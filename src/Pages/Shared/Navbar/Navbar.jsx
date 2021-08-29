@@ -25,13 +25,12 @@ const items = [
   { content: "Home", key: "Home", link: "/" },
   { content: "About Us", key: "About Us", link: "/about-us" },
   {
-    content: "Alumni",
-    key: "Alumni",
-    link: "/alumni",
+    content: "Courses",
+    key: "Courses",
+    link: "/courses",
   },
-  { content: "News", key: "News", link: "/news" },
-  { content: "Events", key: "Events", link: "/events" },
-  { content: "Blogs", key: "Blogs", link: "/blogs" },
+  { content: "Login", key: "Login", link: "/login" },
+  { content: "SignUp", key: "SignUp", link: "/sign-up" },
 ];
 
 const NavBarMobile = (props) => {
