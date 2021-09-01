@@ -7,8 +7,10 @@ import CourseDetail from './Pages/Admin/Course/CourseDetail/CourseDetail'
 import AdminLogin from './Pages/Admin/AdminLogin/AdminLogin'
 import LoginPage from './Pages/LoginSignup/LoginPage'
 import SignupPage from './Pages/LoginSignup/SignupPage'
+import axios from 'axios'
 
 const App = ()=> {
+  axios.defaults.withCredentials = true;
   return (
     <div className="App">
       <Router>
