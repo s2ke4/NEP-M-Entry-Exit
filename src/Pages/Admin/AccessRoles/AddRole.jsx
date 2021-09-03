@@ -27,10 +27,8 @@ const AddRole = ()=>{
                 <div className = "field">
                     <label>Role</label>
                     <select className = "ui fluid dropdown" >
-                        <option value = "">Add Role</option>
                         <option value = "Admin">Admin</option>
-                        <option value = "Staff">Staff</option>
-                        <option value = "Student">Student</option>
+                        <option value = "Instructor">Instructor</option>
                     </select>
                 </div>
                 <button className = "ui button blue">Add</button>

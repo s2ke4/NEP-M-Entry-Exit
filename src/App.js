@@ -11,6 +11,7 @@ import AddRole from './Pages/Admin/AccessRoles/AddRole'
 import RoleList from './Pages/Admin/AccessRoles/RoleList'
 import InstructorDashboard from './Pages/Instructor/Dashboard/Dashboard'
 import StudentDashboard from './Pages/Student/Dashboard/Dashboard'
+import AdminDashboard from './Pages/Admin/Dashboard/Dashboard'
 import axios from 'axios'
 import { createMedia } from "@artsy/fresnel";
 import Header from './Pages/Shared/Header/Header';
@@ -44,6 +45,7 @@ const App = ()=> {
               <Route exact path="/" component={Home} />
               <Route exact path="/admin/add-course" component={AddCourse} />
               <Route exact path="/admin/course/:id" component={CourseDetail} />
+              <Route exact path="/admin/dashboard" component ={AdminDashboard} />
               <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
               <Route exact path="/student/dashboard" component ={StudentDashboard} />
               <Route exact path="/sign-up" component={SignupPage} />
