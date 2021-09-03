@@ -55,7 +55,6 @@ const Header = () => {
     axios.get(`${behost}auth/status`).then((res) => {
       if (res.data.user) {
         setLoggedIn(true);
-        redirectUser(res.data.user.role);
       }
     })
   }, [])
