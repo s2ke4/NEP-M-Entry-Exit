@@ -10,6 +10,7 @@ import LoginPage from './Pages/LoginSignup/LoginPage'
 import SignupPage from './Pages/LoginSignup/SignupPage'
 import { createMedia } from "@artsy/fresnel";
 import Header from './Pages/Shared/Header/Header';
+import UserProfile from './Pages/Profile/Profile'
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -37,8 +38,8 @@ const App = ()=> {
               <Route exact path="/admin/add-course" component={AddCourse} />
               <Route exact path="/admin/course/:id" component={CourseDetail} />
               <Route exact path="/admin/login" component={AdminLogin} />
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/sign-up" component={SignupPage} />          
+              <Route exact path="/sign-up" component={SignupPage} />
+              <Route exact path="/user/profile" component={UserProfile} />          
             </Switch>
           </Navbar>
         </MediaContextProvider>
