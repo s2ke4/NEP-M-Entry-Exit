@@ -1,5 +1,4 @@
 import { Button, Table, Header, Icon, Divider } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
 import './Profile.css'
 
 const UserProfile = ()=>{

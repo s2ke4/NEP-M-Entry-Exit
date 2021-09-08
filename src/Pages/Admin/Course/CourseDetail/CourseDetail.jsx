@@ -1,4 +1,4 @@
-import { Button, Form, Container,Message,Header,Segment,Icon} from "semantic-ui-react";
+import { Container, Segment } from "semantic-ui-react";
 import './CourseDetail.css'
 const CourseDetail = ()=>{
     const data = {

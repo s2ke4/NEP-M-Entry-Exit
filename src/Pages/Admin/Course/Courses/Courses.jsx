@@ -2,7 +2,7 @@ import React from 'react'
 import CourseCard from '../CourseCard/CourseCard';
 import "./Courses.css"
 
-const Courses = () => {
+const AdminCourses = () => {
 
     const courses = [
         {
@@ -58,4 +58,4 @@ const Courses = () => {
     )
 }
 
-export default Courses
+export default AdminCourses
