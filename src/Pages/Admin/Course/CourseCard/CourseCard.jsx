@@ -1,21 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Card, Icon, Image } from 'semantic-ui-react'
 
 const CourseCard = (props) => (
   <Card>
-    <Image src='https://react.semantic-ui.com/images/avatar/large/daniel.jpg' wrapped ui={false} />
+    <Image src={props.courseImg} wrapped ui={false} />
     <Card.Content>
-      <Card.Header>props.courseName</Card.Header>
-      <Card.Meta>props.courseInstructor</Card.Meta>
+      <Card.Header>
+        <Link to={`/courses`}>
+          {props.courseName}
+        </Link>
+      </Card.Header>
+      <Card.Meta>{props.courseCode}</Card.Meta>
       <Card.Description>
-        props.courseDesc
+        Teacher : {props.courseInstructor}
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <a>
+      <Link to={`/courses`}>
         <Icon name='user' />
-        props.courseEnrollments
-      </a>
+        {props.courseEnrollments}
+      </Link>
     </Card.Content>
   </Card>
 )

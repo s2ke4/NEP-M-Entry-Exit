@@ -16,6 +16,7 @@ import axios from 'axios'
 import { createMedia } from "@artsy/fresnel";
 import Header from './Pages/Shared/Header/Header';
 import UserProfile from './Pages/Student/Profile/Profile'
+import Courses from './Pages/Admin/Course/Courses/Courses'
 
 
 const AppMedia = createMedia({
@@ -43,6 +44,7 @@ const App = ()=> {
           <Navbar>
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/courses" component={Courses} />
               <Route exact path="/admin/add-course" component={AddCourse} />
               <Route exact path="/admin/course/:id" component={CourseDetail} />
               <Route exact path="/admin/dashboard" component ={AdminDashboard} />
