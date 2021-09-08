@@ -17,6 +17,7 @@ import { createMedia } from "@artsy/fresnel";
 import Header from './Pages/Shared/Header/Header';
 import UserProfile from './Pages/Student/Profile/Profile'
 import AdminCourses from './Pages/Admin/Course/Courses/Courses'
+import CourseEnrollments from './Pages/Admin/Course/CourseEnrollments/CourseEnrollments';
 
 
 const AppMedia = createMedia({
@@ -48,6 +49,7 @@ const App = ()=> {
               <Route exact path="/admin/courses" component={AdminCourses} />
               <Route exact path="/admin/add-course" component={AddCourse} />
               <Route exact path="/admin/courses/:id" component={CourseDetail} />
+              <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />
               <Route exact path="/admin/dashboard" component ={AdminDashboard} />
               <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
               <Route exact path="/student/dashboard" component ={StudentDashboard} />
