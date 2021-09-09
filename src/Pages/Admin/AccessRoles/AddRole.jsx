@@ -34,7 +34,7 @@ const AddRole = ()=>{
                 <button className = "ui button blue">Add</button>
             </form>
             <Message>
-               <strong>View <Link to="/rolelist">roleList</Link></strong>
+               <strong>View <Link to="/admin/rolelist">roleList</Link></strong>
             </Message>
         </div>
         </div>
