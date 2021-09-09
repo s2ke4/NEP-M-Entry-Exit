@@ -1,6 +1,5 @@
 import React from 'react'
-import { Button, Table, Header, Icon, Divider } from 'semantic-ui-react'
-import { useState, useEffect, useContext } from 'react';
+import { Table, Header, Icon, Divider } from 'semantic-ui-react'
 import '../CourseEnrollments/CourseEnrollments.css'
 
 const CourseEnrollements = (props) => {
