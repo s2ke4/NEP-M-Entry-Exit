@@ -1,52 +1,59 @@
 import React from 'react'
+import CourseCard from '../CourseCard/CourseCard';
 import "./Courses.css"
 
 const Courses = () => {
 
     const courses = [
         {
-            courseName: "CS301",
+            courseCode: "CS301",
             courseInstructor: "Dr. Sunandita Debnath",
-            courseDesc: "Computer Networks blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah....",
+            courseName: "Computer Networks",
             courseEnrollments: 120,
+            courseImg: "assets/images/Courses/course1.jpg"
         },
         {
-            courseName: "CS303",
+            courseCode: "CS303",
             courseInstructor: "Dr. Novarun Deb",
-            courseDesc: "Software Engineering blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah....",
+            courseName: "Software Engineering",
             courseEnrollments: 120,
+            courseImg: "assets/images/Courses/course2.jpg"
         },
         {
-            courseName: "CS305",
+            courseCode: "CS305",
             courseInstructor: "Dr. Manasi Kulkarni",
-            courseDesc: "Automata and Theory of Computation blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah....",
+            courseName: "Automata and Theory of Computation",
             courseEnrollments: 120,
+            courseImg: "assets/images/Courses/course3.jpg"
         },
         {
-            courseName: "Information Retrieval",
+            courseCode: "CS331",
             courseInstructor: "Dr. Pratik Shah",
-            courseDesc: "Information Retrieval blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah....",
+            courseName: "Information Retrieval",
             courseEnrollments: 120,
+            courseImg: "assets/images/Courses/course4.jpg"
         },
         {
-            courseName: "Clloud Computing",
+            courseCode: "CS421",
             courseInstructor: "Dr. Antriksh Goswami",
-            courseDesc: "Cloud Computing blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah.... blah blah blah blah....",
+            courseName: "Cloud Computing",
             courseEnrollments: 120,
+            courseImg: "assets/images/Courses/course5.jpg"
         },
-
     ];
 
-    const displayCourses = () => {
-        courses.forEach(
-            
-        );
+    const renderCourse = (course) => {
+        return CourseCard({courseName: course.courseName, courseInstructor: course.courseInstructor, courseCode: course.courseCode, courseEnrollments: course.courseEnrollments, courseImg: course.courseImg});
     }
 
 
     return (
         <div class="courses-grid-div">
-            
+            {
+                courses.map((course, index) => (
+                    <div key={index}>{renderCourse(course)}</div>
+                ))
+            }
         </div>
     )
 }
