@@ -49,13 +49,9 @@ const App = ()=> {
               <Route exact path="/courses" component={AdminCourses} />
               <Route exact path="/admin/courses" component={AdminCourses} />
               <Route exact path="/admin/add-course" component={AddCourse} />
-<<<<<<< HEAD
               <Route exact path="/admin/courses/:id" component={CourseDetail} />
               <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />
-=======
-              <Route exact path="/admin/course/:id" component={CourseDetail} />
               <Route exact path="/admin/edit-course/:id" component={EditCourse} />
->>>>>>> c9f0eb13b576af1c23ab7da81e83de8ac2a655b1
               <Route exact path="/admin/dashboard" component ={AdminDashboard} />
               <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
               <Route exact path="/student/dashboard" component ={StudentDashboard} />

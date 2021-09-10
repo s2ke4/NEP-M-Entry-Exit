@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import { Container, Segment } from "semantic-ui-react";
-=======
 import { Button, Container, Segment, Modal } from "semantic-ui-react";
 import { useState, useEffect } from 'react';
 import { Redirect,useParams } from 'react-router-dom'
 import axios from 'axios';
->>>>>>> c9f0eb13b576af1c23ab7da81e83de8ac2a655b1
 import './CourseDetail.css'
 const CourseDetail = () => {
     const { id } = useParams();
@@ -63,7 +59,7 @@ const CourseDetail = () => {
           if (!res.data.user || res.data.user.role!=="admin") {
              if(!res.data.user){
                setRedirect("/");
-             }else if(res.data.user==="istructor"){
+             }else if(res.data.user==="instructor"){
                setRedirect("/instructor/dashboard")
              }else{
                setRedirect("/student/dashboard")
