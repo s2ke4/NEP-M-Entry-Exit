@@ -27,14 +27,15 @@ const RoleList = () => {
         }
     }
 
-    const handleDelete = async(e, id)=>{
+    const handleDelete = async(id)=>{
         console.log(id);
-    //    try {
-    //     await axios.delete(`${behost}access/delete/${id}`)
-    //     setRedirect("/admin/rolelist")
-    //    } catch (error) {
-    //        console.log(error.message);
-    //    }
+        try {
+            await axios.delete(`${behost}access/delete/${id}`)
+            let tempData = data.filter((d) => d.id!== id);
+            setData(tempData);
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     useEffect(()=>{
@@ -78,7 +79,7 @@ const RoleList = () => {
                                 <Table.Cell>{val.name}</Table.Cell>
                                 <Table.Cell>{val.email}</Table.Cell>
                                 <Table.Cell>{val.role}</Table.Cell>
-                                <Table.Cell><Button onClick={handleDelete(val.id)} >Delete</Button></Table.Cell>
+                                <Table.Cell><Button onClick={() => handleDelete(val.id)} >Delete</Button></Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>
