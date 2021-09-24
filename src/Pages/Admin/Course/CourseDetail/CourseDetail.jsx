@@ -59,7 +59,7 @@ const CourseDetail = () => {
           if (!res.data.user || res.data.user.role!=="admin") {
              if(!res.data.user){
                setRedirect("/");
-             }else if(res.data.user==="istructor"){
+             }else if(res.data.user==="instructor"){
                setRedirect("/instructor/dashboard")
              }else{
                setRedirect("/student/dashboard")

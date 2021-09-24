@@ -1,6 +1,5 @@
 import { Button, Form, Grid, Header, Image, Message, Input, Select  } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
-import { useState } from 'react';
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },

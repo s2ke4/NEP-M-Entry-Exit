@@ -1,61 +1,73 @@
 import React from 'react'
 import CourseCard from '../CourseCard/CourseCard';
 import "./Courses.css"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const Courses = () => {
-
-    const courses = [
-        {
-            courseCode: "CS301",
-            courseInstructor: "Dr. Sunandita Debnath",
-            courseName: "Computer Networks",
-            courseEnrollments: 120,
-            courseImg: "assets/images/Courses/course1.jpg"
-        },
-        {
-            courseCode: "CS303",
-            courseInstructor: "Dr. Novarun Deb",
-            courseName: "Software Engineering",
-            courseEnrollments: 120,
-            courseImg: "assets/images/Courses/course2.jpg"
-        },
-        {
-            courseCode: "CS305",
-            courseInstructor: "Dr. Manasi Kulkarni",
-            courseName: "Automata and Theory of Computation",
-            courseEnrollments: 120,
-            courseImg: "assets/images/Courses/course3.jpg"
-        },
-        {
-            courseCode: "CS331",
-            courseInstructor: "Dr. Pratik Shah",
-            courseName: "Information Retrieval",
-            courseEnrollments: 120,
-            courseImg: "assets/images/Courses/course4.jpg"
-        },
-        {
-            courseCode: "CS421",
-            courseInstructor: "Dr. Antriksh Goswami",
-            courseName: "Cloud Computing",
-            courseEnrollments: 120,
-            courseImg: "assets/images/Courses/course5.jpg"
-        },
+const AdminCourses = () => {
+    const [courses,setCourses] = useState([{}]);
+    const [redirect, setRedirect] = useState(null);
+    const behost = process.env.REACT_APP_BACKEND_HOST;
+    const [loading,setLoading] = useState(true);
+    const [open, setOpen] = useState(false);
+    
+    var courseImg = [
+        "/assets/images/Courses/course1.jpg",
+        "/assets/images/Courses/course2.jpg",
+        "/assets/images/Courses/course3.jpg",
+        "/assets/images/Courses/course4.jpg",
+        "/assets/images/Courses/course5.jpg",
+        "/assets/images/Courses/course6.jpg",
+        "/assets/images/Courses/course7.jpg",
+        "/assets/images/Courses/course8.jpg",
     ];
+    useEffect(()=>{
+        axios.get(`${behost}auth/status`).then((res) => {
+          if (!res.data.user || res.data.user.role!=="admin") {
+             if(!res.data.user){
+               setRedirect("/");
+             }else if(res.data.user==="instructor"){
+               setRedirect("/instructor/dashboard")
+             }else{
+               setRedirect("/student/dashboard")
+             }
+          }else{
+              fetchData();
+          }
+        })
+      },[])
 
-    const renderCourse = (course) => {
-        return CourseCard({courseName: course.courseName, courseInstructor: course.courseInstructor, courseCode: course.courseCode, courseEnrollments: course.courseEnrollments, courseImg: course.courseImg});
+    const fetchData = async()=>{
+        try {
+            let res = await axios.get(`${behost}course/get`);
+            if(res.data.length>0){
+                console.log(res.data);
+                setCourses(res.data);
+                setLoading(false);
+            }else{
+                setRedirect("/404")
+            }
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
-
     return (
-        <div class="courses-grid-div">
+        <div>
             {
-                courses.map((course, index) => (
-                    <div key={index}>{renderCourse(course)}</div>
-                ))
+                loading?<p>loading...</p>:
+                <div className="courses-grid-div">
+                    {
+                        courses.map((course,index) => (
+                            <div key={index}>
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  courseEnrollments = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} />
+                            </div>
+                        ))
+                    }
+                </div>
             }
         </div>
     )
 }
 
-export default Courses
+export default AdminCourses
