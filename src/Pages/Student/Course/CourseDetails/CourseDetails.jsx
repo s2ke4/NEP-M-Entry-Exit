@@ -1,4 +1,4 @@
-import { Button, Container, Segment, Modal } from "semantic-ui-react";
+import { Container, Segment } from "semantic-ui-react";
 import { useState, useEffect } from 'react';
 import { Redirect,useParams } from 'react-router-dom'
 import axios from 'axios';

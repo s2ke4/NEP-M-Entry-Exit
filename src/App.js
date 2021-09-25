@@ -55,10 +55,9 @@ const App = ()=> {
               <Route exact path="/instructor/courses/:id/enrollments" component={CourseEnrollments} />
               <Route exact path="/student/dashboard" component ={StudentDashboard} />
               <Route exact path="/student/courses/:id" component={StudentCourseDetail} />
-              <Route exact path="/student/courses/:id/enrollments" component={CourseEnrollments} />
               <Route exact path="/sign-up" component={SignupPage} />
               <Route exact path="/admin/rolelist" component={RoleList} />
-              <Route exact path="/admin/addrole" component={AddRole}/>     
+              <Route exact path="/admin/add-role" component={AddRole}/>     
               <Route exact path="/sign-up" component={SignupPage} />
               <Route exact path="/user/profile" component={UserProfile} />          
             </Switch>

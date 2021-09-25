@@ -11,10 +11,9 @@ const NavDecider = (props) => {
     const [navType, setNavType] = useState(3);
     useEffect(() => {
         axios.get(`${behost}auth/status`).then((res) => {
-            if(res.data.user !== null) {
+            if(res.data.user) {
                 if(res.data.user.role==="admin"){
                     setNavType(0);
-                    console.log(navType);
                  }else if(res.data.user.role==="instructor"){
                     setNavType(1);
                  } else {
@@ -23,21 +22,15 @@ const NavDecider = (props) => {
             } else{
                 setNavType(3);
             }
-          })
+        })
     });
     return (
         <div>
-            {(navType === 0) ?
-                <AdminNav>{props.children}</AdminNav>
-                :
-                (navType === 1) ?
-                <InstructorNav>{props.children}</InstructorNav>
-                :
-                (navType === 2) ?
-                <StudentNav>{props.children}</StudentNav>
-                :
-                <Navbar>{props.children}</Navbar>
-            }
+            {console.log("NavType : "+navType.toString())}
+            { (navType) === 0  ? <AdminNav>{props.children}</AdminNav> : null }
+            { (navType) === 1  ? <InstructorNav>{props.children}</InstructorNav> : null}
+            { (navType) === 2  ? <StudentNav>{props.children}</StudentNav> : null}
+            { (navType) === 3  ? <Navbar>{props.children}</Navbar> : null}
         </div>
     )
 }

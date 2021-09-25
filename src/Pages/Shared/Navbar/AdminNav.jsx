@@ -60,11 +60,11 @@ const NavBarMobile = (props) => {
         >
           {items.map((item) => (
             (item.content === "Roles") ?
-            <Menu.Item>
+            <Menu.Item active={activeItem}>
               <Dropdown text={item.content}>
-                <Dropdown.Menu>
-                  <Dropdown.Item text="Add Role" />
-                  <Dropdown.Item text="View/Delete Role"/>
+                <Dropdown.Menu style={{marginTop: "0.4rem"}}>
+                  <Dropdown.Item text="Add Role" as={Link} to="/admin/add-role" onClick={() => {setActiveItem(true)}}/>
+                  <Dropdown.Item text="View/Delete Role" as={Link} to="/admin/rolelist" onClick={() => {setActiveItem(true)}}/>
                 </Dropdown.Menu>
               </Dropdown>
             </Menu.Item>
@@ -103,11 +103,11 @@ const NavBarDesktop = (props) => {
       <Menu inverted widths={9} style={navStyle}>
         {items.map((item) => (
               (item.content === "Roles") ?
-              <Menu.Item>
+              <Menu.Item active={activeItem === item.content}>
                 <Dropdown text={item.content}>
-                  <Dropdown.Menu>
-                    <Dropdown.Item text="Add Role" />
-                    <Dropdown.Item text="View/Delete Role"/>
+                  <Dropdown.Menu style={{marginTop: "0.4rem"}}>
+                    <Dropdown.Item text="Add Role" as={Link} to="/admin/add-role" onClick={()=>{setActiveItem("Roles")}}/>
+                    <Dropdown.Item text="View/Delete Role" as={Link} to="/admin/rolelist" onClick={()=>{setActiveItem("Roles")}}/>
                   </Dropdown.Menu>
                 </Dropdown>
               </Menu.Item>
