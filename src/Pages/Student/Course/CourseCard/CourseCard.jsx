@@ -5,11 +5,10 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 const CourseCard = (props) => {
   return (
     <Card>
-      {console.log(props.courseImg)}
       <Image src={props.courseImg} wrapped ui={false} />
       <Card.Content>
         <Card.Header>
-          <Link to={`/admin/courses/${props.courseId}`}>
+          <Link to={`/student/courses/${props.courseId}`}>
             {props.courseName}
           </Link>
         </Card.Header>
@@ -18,14 +17,8 @@ const CourseCard = (props) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-          <Link to={{pathname: `/admin/courses/1/enrollments`, obj: {
-            courseCode: props.courseName,
-            courseEnrollments: props.courseEnrollments,
-          }}}>
             <Icon name='users' />
             { props.registeredStudent } / {props.totalSeat}
-          </Link>
-        
       </Card.Content>
     </Card>
   );

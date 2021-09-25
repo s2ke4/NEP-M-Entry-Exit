@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, Icon, Sidebar } from "semantic-ui-react";
+import { Menu, Icon, Sidebar, Dropdown } from "semantic-ui-react";
 import "./Navbar.css";
 import { createMedia } from "@artsy/fresnel";
 import { Link } from "react-router-dom";
@@ -22,8 +22,11 @@ const AppMedia = createMedia({
 const { Media } = AppMedia;
 
 const items = [
-  { content: "Home", key: "Home", link: "/" },
-  { content: "About Us", key: "About Us", link: "/about-us" },
+  { content: "Home", key: "Home", link: "/admin/dashboard" },
+  { content: "About Us", key: "About Us", link: "/admin/about-us" },
+  { content: "Roles", key: "Roles", link: "/roles" },
+  { content: "Add Course", key: "Add Course", link: "/admin/add-course" },
+  { content: "Student Applications", key: "Student Applications", link: "/student-applications" },
 ];
 
 const NavBarMobile = (props) => {
@@ -56,6 +59,16 @@ const NavBarMobile = (props) => {
           visible={visible}
         >
           {items.map((item) => (
+            (item.content === "Roles") ?
+            <Menu.Item>
+              <Dropdown text={item.content}>
+                <Dropdown.Menu>
+                  <Dropdown.Item text="Add Role" />
+                  <Dropdown.Item text="View/Delete Role"/>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu.Item>
+            :
             <Menu.Item
               {...item}
               name={item}
@@ -89,23 +102,33 @@ const NavBarDesktop = (props) => {
     <>
       <Menu inverted widths={9} style={navStyle}>
         {items.map((item) => (
-          <Menu.Item
-            {...item}
-            name={item}
-            active={activeItem === item.content}
-            onClick={() => clickHandler(item)}
-            className="nav-items"
-            as={Link}
-            to={item.link}
-          ></Menu.Item>
-        ))}
+              (item.content === "Roles") ?
+              <Menu.Item>
+                <Dropdown text={item.content}>
+                  <Dropdown.Menu>
+                    <Dropdown.Item text="Add Role" />
+                    <Dropdown.Item text="View/Delete Role"/>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Menu.Item>
+              :
+              <Menu.Item
+                {...item}
+                name={item}
+                active={activeItem === item.content}
+                onClick={() => clickHandler(item)}
+                className="nav-items"
+                as={Link}
+                to={item.link}
+              ></Menu.Item>
+            ))}
       </Menu>
       {props.children}
     </>
   );
 };
 
-const Navbar = (props) => {
+const AdminNav = (props) => {
   return (
     <div>
       <Media at="mobile">
@@ -119,4 +142,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+export default AdminNav;

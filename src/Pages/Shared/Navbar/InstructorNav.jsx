@@ -22,7 +22,7 @@ const AppMedia = createMedia({
 const { Media } = AppMedia;
 
 const items = [
-  { content: "Home", key: "Home", link: "/" },
+  { content: "Home", key: "Home", link: "/instructor/dashboard" },
   { content: "About Us", key: "About Us", link: "/about-us" },
 ];
 
@@ -105,7 +105,7 @@ const NavBarDesktop = (props) => {
   );
 };
 
-const Navbar = (props) => {
+const InstructorNav = (props) => {
   return (
     <div>
       <Media at="mobile">
@@ -119,4 +119,4 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+export default InstructorNav;

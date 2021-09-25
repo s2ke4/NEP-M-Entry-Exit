@@ -1,11 +1,10 @@
 import React from 'react'
 import CourseCard from '../CourseCard/CourseCard';
-import "./Courses.css"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 
-const AdminCourses = () => {
+const InstructorCourses = () => {
     const [courses,setCourses] = useState([{}]);
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
@@ -24,11 +23,12 @@ const AdminCourses = () => {
     ];
     useEffect(()=>{
         axios.get(`${behost}auth/status`).then((res) => {
-          if (!res.data.user || res.data.user.role!=="admin") {
+          if (!res.data.user || res.data.user.role!=="instructor") {
+            console.log("not an instructor");
              if(!res.data.user){
                setRedirect("/");
-             }else if(res.data.user==="instructor"){
-               setRedirect("/instructor/dashboard")
+             }else if(res.data.user==="admin"){
+               setRedirect("/admin/dashboard")
              }else{
                setRedirect("/student/dashboard")
              }
@@ -71,4 +71,4 @@ const AdminCourses = () => {
     )
 }
 
-export default AdminCourses
+export default InstructorCourses

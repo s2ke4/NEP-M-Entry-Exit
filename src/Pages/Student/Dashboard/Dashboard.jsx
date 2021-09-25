@@ -1,10 +1,11 @@
 import './Dashboard.css';
 import React from 'react';
+import StudentCourses from '../Course/Courses/Courses';
 
 const Dashboard = ()=>{
     return (
         <div>
-            Welcome Student, You Can see all of course card here.
+           <StudentCourses></StudentCourses>
         </div>
     );
 }
