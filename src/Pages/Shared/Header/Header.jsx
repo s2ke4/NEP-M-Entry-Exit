@@ -1,4 +1,5 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect,useContext } from "react";
+import {UserContext} from '../../../Providers/UserProvider'
 import { Divider } from "semantic-ui-react";
 import "./Header.css";
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
@@ -9,6 +10,7 @@ dotenv.config({ path: "/" })
 
 const Header = () => {
   const history = useHistory();
+  const {info,fetchInfo} = useContext(UserContext);
   const logo = "/assets/images/HeaderNFooter/logo.png";
   const behost = process.env.REACT_APP_BACKEND_HOST
   const [redirect, setRedirect] = useState()
@@ -34,6 +36,7 @@ const Header = () => {
       withCredentials: true
     })
     setLoggedIn(true);
+    fetchInfo();
     if (res.data.registered) {
       redirectUser(res.data.user.role);
     } else {
@@ -46,18 +49,17 @@ const Header = () => {
   }
 
   const logout = async()=>{
-      let res = await axios.get(`${behost}auth/logout`);
+      await axios.get(`${behost}auth/logout`);
       setLoggedIn(false);
+      fetchInfo();
       setRedirect("/")
   }
 
   useEffect(() => {
-    axios.get(`${behost}auth/status`).then((res) => {
-      if (res.data.user) {
-        setLoggedIn(true);
-      }
-    })
-  }, [])
+    if (info.user) {
+      setLoggedIn(true);
+    }
+  }, [info])
 
   if (redirect) {
     history.push(redirect);

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
+import {UserContext} from '../../../Providers/UserProvider'
 import axios from 'axios';
 import AdminNav from './AdminNav';
 import InstructorNav from './InstructorNav';
@@ -8,6 +8,8 @@ import StudentNav from './StudentNav';
 
 const NavDecider = (props) => {
     const behost = process.env.REACT_APP_BACKEND_HOST;
+    const {info} = useContext(UserContext);
+    console.log(info);
     const [navType, setNavType] = useState(3);
     useEffect(() => {
         axios.get(`${behost}auth/status`).then((res) => {

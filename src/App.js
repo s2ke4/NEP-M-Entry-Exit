@@ -19,6 +19,7 @@ import NavDecider from './Pages/Shared/Navbar/NavDecider';
 import AdminDashboard from './Pages/Admin/Dashboard/Dashboard';
 import InstructorCourseDetail from './Pages/Instructor/Course/CourseDetails/CourseDetails';
 import StudentCourseDetail from './Pages/Student/Course/CourseDetails/CourseDetails';
+import UserProvider from './Providers/UserProvider'
 
 
 const AppMedia = createMedia({
@@ -39,31 +40,33 @@ const App = ()=> {
   axios.defaults.withCredentials = true;
   return (
     <div className="App">
-      <Router>
-        <Header/>
-        <style>{mediaStyles}</style>
-        <MediaContextProvider>
-          <NavDecider>
-            <Switch>
-              <Route exact path="/admin/add-course" component={AddCourse} />
-              <Route exact path="/admin/courses/:id" component={AdminCourseDetail} />
-              <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />
-              <Route exact path="/admin/edit-course/:id" component={EditCourse} />
-              <Route exact path="/admin/dashboard" component ={AdminDashboard} />
-              <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
-              <Route exact path="/instructor/courses/:id" component={InstructorCourseDetail} />
-              <Route exact path="/instructor/courses/:id/enrollments" component={CourseEnrollments} />
-              <Route exact path="/student/dashboard" component ={StudentDashboard} />
-              <Route exact path="/student/courses/:id" component={StudentCourseDetail} />
-              <Route exact path="/sign-up" component={SignupPage} />
-              <Route exact path="/admin/rolelist" component={RoleList} />
-              <Route exact path="/admin/add-role" component={AddRole}/>     
-              <Route exact path="/sign-up" component={SignupPage} />
-              <Route exact path="/user/profile" component={UserProfile} />          
-            </Switch>
-          </NavDecider>
-        </MediaContextProvider>
-      </Router>
+      <UserProvider>
+        <Router>
+          <Header/>
+          <style>{mediaStyles}</style>
+          <MediaContextProvider>
+            <NavDecider>
+              <Switch>
+                <Route exact path="/admin/add-course" component={AddCourse} />
+                <Route exact path="/admin/courses/:id" component={AdminCourseDetail} />
+                <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />
+                <Route exact path="/admin/edit-course/:id" component={EditCourse} />
+                <Route exact path="/admin/dashboard" component ={AdminDashboard} />
+                <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
+                <Route exact path="/instructor/courses/:id" component={InstructorCourseDetail} />
+                <Route exact path="/instructor/courses/:id/enrollments" component={CourseEnrollments} />
+                <Route exact path="/student/dashboard" component ={StudentDashboard} />
+                <Route exact path="/student/courses/:id" component={StudentCourseDetail} />
+                <Route exact path="/sign-up" component={SignupPage} />
+                <Route exact path="/admin/rolelist" component={RoleList} />
+                <Route exact path="/admin/add-role" component={AddRole}/>     
+                <Route exact path="/sign-up" component={SignupPage} />
+                <Route exact path="/user/profile" component={UserProfile} />          
+              </Switch>
+            </NavDecider>
+          </MediaContextProvider>
+        </Router>
+        </UserProvider>
     </div>
   );
 }
