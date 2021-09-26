@@ -28,7 +28,6 @@ const RoleList = () => {
     }
 
     const handleDelete = async(id)=>{
-        console.log(id);
         try {
             await axios.delete(`${behost}access/delete/${id}`)
             let tempData = data.filter((d) => d.id!== id);

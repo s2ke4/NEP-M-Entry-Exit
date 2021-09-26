@@ -28,7 +28,6 @@ const NavDecider = (props) => {
     });
     return (
         <div>
-            {console.log("NavType : "+navType.toString())}
             { (navType) === 0  ? <AdminNav>{props.children}</AdminNav> : null }
             { (navType) === 1  ? <InstructorNav>{props.children}</InstructorNav> : null}
             { (navType) === 2  ? <StudentNav>{props.children}</StudentNav> : null}

@@ -42,7 +42,6 @@ const AdminCourses = () => {
         try {
             let res = await axios.get(`${behost}course/get`);
             if(res.data.length>0){
-                console.log(res.data);
                 setCourses(res.data);
                 setLoading(false);
             }else{
