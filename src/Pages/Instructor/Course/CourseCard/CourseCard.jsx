@@ -5,7 +5,6 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 const CourseCard = (props) => {
   return (
     <Card>
-      {console.log(props.courseImg)}
       <Image src={props.courseImg} wrapped ui={false} />
       <Card.Content>
         <Card.Header>

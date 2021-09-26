@@ -14,7 +14,6 @@ const AddRole = ()=>{
 
     const addrole = async (e) => {
       e.preventDefault();
-      console.log(data);
         try {
           if(!data.name||!data.email||!data.role){
             return;
@@ -53,7 +52,6 @@ const AddRole = ()=>{
     }
 
     const setInfoDropdown = (e,{ name, value }) => {
-      console.log(value);
       setData({
         ...data,
         [name]: value,

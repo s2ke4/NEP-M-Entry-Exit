@@ -24,7 +24,6 @@ const InstructorCourses = () => {
     useEffect(()=>{
         axios.get(`${behost}auth/status`).then((res) => {
           if (!res.data.user || res.data.user.role!=="instructor") {
-            console.log("not an instructor");
              if(!res.data.user){
                setRedirect("/");
              }else if(res.data.user==="admin"){
@@ -42,7 +41,6 @@ const InstructorCourses = () => {
         try {
             let res = await axios.get(`${behost}course/get`);
             if(res.data.length>0){
-                console.log(res.data);
                 setCourses(res.data);
                 setLoading(false);
             }else{
