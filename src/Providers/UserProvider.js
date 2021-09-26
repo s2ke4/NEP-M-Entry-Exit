@@ -9,6 +9,7 @@ const UserProvider = (props) => {
   const behost = process.env.REACT_APP_BACKEND_HOST;
   const [info, setInfo] = useState({ user: null, isLoading: true });
   const fetchInfo = () => {
+    console.log("someone called me")
     axios.get(`${behost}auth/status`).then((res) => {
       if (res.data.user) {
         setInfo({ user: res.data.user, isLoading: false });

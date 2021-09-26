@@ -1,10 +1,12 @@
 import { Container, Segment } from "semantic-ui-react";
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import { Redirect,useParams } from 'react-router-dom'
+import {UserContext} from '../../../../Providers/UserProvider'
 import axios from 'axios';
 import '../CourseDetails/CourseDetails.css'
 const StudentCourseDetail = () => {
     const { id } = useParams();
+    const {info} = useContext(UserContext)
     const [data,setData] = useState();
     const detailElement = [
         { label: "Course Instructor Name", name: "instructor" },
@@ -44,20 +46,18 @@ const StudentCourseDetail = () => {
     }
 
     useEffect(()=>{
-        axios.get(`${behost}auth/status`).then((res) => {
-          if (!res.data.user || res.data.user.role!=="student") {
-             if(!res.data.user){
-               setRedirect("/");
-             }else if(res.data.user==="admin"){
-               setRedirect("/admin/dashboard")
-             }else{
-               setRedirect("/instructor/dashboard")
-             }
-          }else{
-              fetchData();
-          }
-        })
-      },[])
+        if (!info.user || info.user.role!=="student") {
+            if(!info.user){
+            setRedirect("/");
+            }else if(info.user==="admin"){
+            setRedirect("/admin/dashboard")
+            }else{
+            setRedirect("/instructor/dashboard")
+            }
+        }else{
+            fetchData();
+        }
+      },[info])
     
     if (redirect) {
         return <Redirect to={redirect} />

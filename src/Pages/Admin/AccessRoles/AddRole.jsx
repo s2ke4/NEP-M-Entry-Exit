@@ -1,13 +1,11 @@
-import { useState, useEffect , React} from 'react';
-import {  Message } from 'semantic-ui-react';
+import { useState, useEffect , React,useContext} from 'react';
 import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
-import { Dropdown } from 'semantic-ui-react'
-
+import { Dropdown,Message } from 'semantic-ui-react'
+import {UserContext} from '../../../Providers/UserProvider'
 
 const AddRole = ()=>{
-
-
+    const {info} = useContext(UserContext);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [data, setData] = useState({});
     const [redirect, setRedirect] = useState(null);
@@ -31,18 +29,16 @@ const AddRole = ()=>{
     }
 
     useEffect(()=>{
-        axios.get(`${behost}auth/status`).then((res) => {
-          if (!res.data.user || res.data.user.role!=="admin") {
-             if(!res.data.user){
+          if (!info.user || info.user.role!=="admin") {
+             if(!info.user){
                setRedirect("/");
-             }else if(res.data.user==="istructor"){
+             }else if(info.user==="istructor"){
                setRedirect("/instructor/dashboard")
              }else{
                setRedirect("/student/dashboard")
              }
           }
-        })
-      },[])
+      },[info])
 
     const setInfo = (e) => {
       setData({

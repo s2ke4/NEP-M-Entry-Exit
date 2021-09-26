@@ -1,15 +1,15 @@
-import React from 'react'
 import CourseCard from '../CourseCard/CourseCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import { UserContext } from '../../../../Providers/UserProvider';
 
 const StudentCourses = () => {
     const [courses,setCourses] = useState([{}]);
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading,setLoading] = useState(true);
-    const [open, setOpen] = useState(false);
+    const {info} = useContext(UserContext)
     
     var courseImg = [
         "/assets/images/Courses/course1.jpg",
@@ -22,20 +22,18 @@ const StudentCourses = () => {
         "/assets/images/Courses/course8.jpg",
     ];
     useEffect(()=>{
-        axios.get(`${behost}auth/status`).then((res) => {
-          if (!res.data.user || res.data.user.role!=="student") {
-             if(!res.data.user){
-               setRedirect("/");
-             }else if(res.data.user==="instructor"){
-               setRedirect("/instructor/dashboard")
-             }else{
-               setRedirect("/admin/dashboard")
-             }
-          }else{
-              fetchData();
-          }
-        })
-      },[])
+        if (!info.user || info.user.role!=="student") {
+            if(!info.user){
+            setRedirect("/");
+            }else if(info.user==="instructor"){
+            setRedirect("/instructor/dashboard")
+            }else{
+            setRedirect("/admin/dashboard")
+            }
+        }else{
+            fetchData();
+        }
+    },[info])
 
     const fetchData = async()=>{
         try {
@@ -49,6 +47,10 @@ const StudentCourses = () => {
         } catch (error) {
             console.log(error.message)
         }
+    }
+
+    if(redirect){
+        return <Redirect to={redirect} />;
     }
 
     return (
