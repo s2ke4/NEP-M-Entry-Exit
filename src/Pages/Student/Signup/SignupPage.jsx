@@ -1,5 +1,9 @@
 import { Button, Form, Grid, Header, Image, Message, Input, Select  } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { useState, useEffect , React,useContext} from 'react';
+import { Link, Redirect } from "react-router-dom";
+import axios from 'axios';
+import {UserContext} from '../../../Providers/UserProvider'
+
 
 const genderOptions = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -17,6 +21,54 @@ const currentYear = [
 ]
 
 const SignupPage = ()=>{
+
+
+  const {info} = useContext(UserContext);
+  const behost = process.env.REACT_APP_BACKEND_HOST;
+  const [studentData, setStudentData] = useState({});
+  const [redirect, setRedirect] = useState(null);
+
+  const addStudentData = async (e) => {
+    e.preventDefault();
+      try {
+        if(!studentData.firstname ||!studentData.email||!studentData.lastname||!studentData.phone||!studentData.birthday||!studentData.gender||!studentData.currentyear||!studentData.institute ){
+          console.log("hello");
+          return;
+        }
+        console.log(studentData)
+        await axios({
+          method: "POST",
+          url: behost + "student/sign-up",
+          data: studentData,
+          withCredentials: true
+        })
+        //setRedirect("/admin/rolelist")
+      } catch (error) {
+        console.log(error.message);
+      }
+  }
+
+  const setData = (e) => {
+    setStudentData({
+      ...studentData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const setDataDropdown = (e,{ name, value }) => {
+    setStudentData({
+      ...studentData,
+      [name]: value,
+    })
+  }
+
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
+
+
+
+
   return(
     <div>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='top'>
@@ -27,48 +79,55 @@ const SignupPage = ()=>{
           <Form size='large'>
             <Form.Group widths='equal'>
               <Form.Field required
-                id='form-input-control-first-name'
+                name = "firstname"
                 control={Input}
+                onChange ={ (e) => setData(e)}
                 label='First name'
                 placeholder='First name'
               />
               <Form.Field required
-                id='form-input-control-last-name'
+                name = "lastname"
                 control={Input}
+                onChange ={ (e) => setData(e)}
                 label='Last name'
                 placeholder='Last name'
               />  
               <Form.Field required
                 control={Select}
+                name = "gender"
                 options={genderOptions}
                 label='Gender'
+                onChange ={setDataDropdown}
                 placeholder='Gender'
                 search
                 searchInput={{ id: 'form-select-control-gender' }}
               />
             </Form.Group>
             <label><strong>Date of Birth</strong></label>
-            <input type="date" id="birthday" name="birthday" required />
+            <input type="date" id="birthday" name="birthday"  onChange ={ (e) => setData(e)}  required />
             <br /> <br />
             <Form.Group widths='equal'>
               <Form.Field required
-                id='form-textarea-control-opinion'
+                name = "institute"
                 control={Input}
+                onChange ={ (e) => setData(e)}
                 label='Institute'
                 placeholder='Institute Name'
               />
               <Form.Field required
-                id='form-textarea-control-opinion'
+                name = "currentyear"
                 control={Select}
                 options={currentYear}
+                onChange ={setDataDropdown}
                 label='Current Year'
                 placeholder='Current Year'
               />
             </Form.Group>
             <Form.Group widths='equal'>
               <Form.Field required
-                id='form-input-control-error-email'
+                name = "email"
                 control={Input}
+                onChange ={ (e) => setData(e)}
                 label='Email'
                 placeholder='example@xyz.com'
                 // error={{
@@ -77,8 +136,9 @@ const SignupPage = ()=>{
                 // }}
               />
               <Form.Field required
-                id='form-input-control-error-email'
+                name = "phone"
                 control={Input}
+                onChange ={ (e) => setData(e)}
                 label='Phone Number'
                 placeholder='Do not include +91'
                 // error={{
@@ -90,7 +150,9 @@ const SignupPage = ()=>{
             <Form.Field required
               id='form-button-control-public'
               control={Button}
-              content='Signup'
+              onClick = {addStudentData}
+              //onSubmit = {addStudentData}
+              content='Sign-up'
               color='teal'
             />
           </Form>
