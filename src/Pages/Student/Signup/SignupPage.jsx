@@ -22,28 +22,29 @@ const currentYear = [
 
 const SignupPage = ()=>{
 
-
   const {info} = useContext(UserContext);
   const behost = process.env.REACT_APP_BACKEND_HOST;
   const [studentData, setStudentData] = useState({});
   const [redirect, setRedirect] = useState(null);
+  const [wait,setWait] = useState(false);
 
   const addStudentData = async (e) => {
     e.preventDefault();
+    studentData.email = info.user && info.user.email;
       try {
         if(!studentData.firstname ||!studentData.email||!studentData.lastname||!studentData.phone||!studentData.birthday||!studentData.gender||!studentData.currentyear||!studentData.institute ){
-          console.log("hello");
           return;
         }
-        console.log(studentData)
+        setWait(true);
         await axios({
           method: "POST",
           url: behost + "student/sign-up",
           data: studentData,
           withCredentials: true
         })
-        //setRedirect("/admin/rolelist")
+        setRedirect("/student/dashboard")
       } catch (error) {
+        setWait(false);
         console.log(error.message);
       }
   }
@@ -62,17 +63,28 @@ const SignupPage = ()=>{
     })
   }
 
+  useEffect(()=>{
+    if(!info.isLoading){
+      if(!info.user){
+        setRedirect("/")
+      }else if(info.user.role==="admin"){
+        setRedirect("/admin/dashboard")
+      }else if(info.user.role==="instructor"){
+        setRedirect("/instructor/dashboard");
+      }else if(info.user.registered){
+        setRedirect("/student/dashboard")
+      }
+    }
+  },[info])
+
   if (redirect) {
     return <Redirect to={redirect} />;
   }
 
-
-
-
   return(
     <div>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='top'>
-        <Grid.Column style={{ maxWidth: 800 }}>
+        {info.isLoading?<p>Loading...</p>:<Grid.Column style={{ maxWidth: 800 }}>
           <Header as='h2' color='teal' textAlign='center' >
             <Image src='/iiitv.jpg' /> Signup to make your Profile
           </Header>
@@ -127,9 +139,10 @@ const SignupPage = ()=>{
               <Form.Field required
                 name = "email"
                 control={Input}
-                onChange ={ (e) => setData(e)}
                 label='Email'
+                value={info.user && info.user.email}
                 placeholder='example@xyz.com'
+                readonly
                 // error={{
                 //   content: 'Please enter a valid email address',
                 //   pointing: 'below',
@@ -152,14 +165,14 @@ const SignupPage = ()=>{
               control={Button}
               onClick = {addStudentData}
               //onSubmit = {addStudentData}
-              content='Sign-up'
+              content={wait?"Loading...":'Sign-up'}
               color='teal'
             />
           </Form>
           <Message>
             <strong>Already have a profile ? <Link to="/about">Login</Link></strong>
           </Message>
-        </Grid.Column>
+        </Grid.Column>}
       </Grid> 
     </div>
   );

@@ -116,7 +116,7 @@ const AddCourse = () => {
     if (!info.user || info.user.role !== "admin") {
       if (!info.user) {
         setRedirect("/");
-      } else if (info.user === "istructor") {
+      } else if (info.user === "instructor") {
         setRedirect("/instructor/dashboard");
       } else {
         setRedirect("/student/dashboard");

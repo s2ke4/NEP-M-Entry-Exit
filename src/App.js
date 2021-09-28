@@ -60,7 +60,7 @@ const App = ()=> {
                 <Route exact path="/sign-up" component={SignupPage} />
                 <Route exact path="/admin/rolelist" component={RoleList} />
                 <Route exact path="/admin/add-role" component={AddRole}/>     
-                <Route exact path="/sign-up" component={SignupPage} />
+                <Route exact path="/student/sign-up" component={SignupPage} />
                 <Route exact path="/user/profile" component={UserProfile} />          
               </Switch>
             </NavDecider>

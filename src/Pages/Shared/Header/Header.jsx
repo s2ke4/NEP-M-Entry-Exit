@@ -40,7 +40,7 @@ const Header = () => {
     if (res.data.registered) {
       redirectUser(res.data.user.role);
     } else {
-      setRedirect("/student/dashboard");
+      setRedirect("/student/sign-up");
     }
   }
 
