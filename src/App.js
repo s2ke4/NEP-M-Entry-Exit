@@ -21,7 +21,6 @@ import InstructorCourseDetail from './Pages/Instructor/Course/CourseDetails/Cour
 import StudentCourseDetail from './Pages/Student/Course/CourseDetails/CourseDetails';
 import UserProvider from './Providers/UserProvider'
 
-
 const AppMedia = createMedia({
   breakpoints: {
     mobile: 320,
@@ -47,6 +46,7 @@ const App = ()=> {
           <MediaContextProvider>
             <NavDecider>
               <Switch>
+                <Route exact path="/" component={StudentDashboard} />
                 <Route exact path="/admin/add-course" component={AddCourse} />
                 <Route exact path="/admin/courses/:id" component={AdminCourseDetail} />
                 <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />

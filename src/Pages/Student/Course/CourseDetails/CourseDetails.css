@@ -1,3 +1,13 @@
+.course-detail {
+    margin-bottom: 4rem;
+}
 .course-detail h3:first-child{
     margin-top: 25px;
+}
+.student-course-details-checkbox-div {
+    margin: 2.5rem 0 0 0;
+}
+.student-course-details-apply-div {
+    margin-top: 3.2rem;
+    margin-bottom: 5rem;
 }

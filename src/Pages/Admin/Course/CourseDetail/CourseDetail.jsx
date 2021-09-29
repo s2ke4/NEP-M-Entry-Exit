@@ -86,7 +86,7 @@ const AdminCourseDetail = () => {
             <Modal.Content>
               <p>
                 Are you sure you want to delete this course. This action can't
-                be undo.
+                be undone.
               </p>
             </Modal.Content>
             <Modal.Actions>
