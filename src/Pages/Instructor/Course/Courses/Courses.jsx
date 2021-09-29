@@ -6,6 +6,7 @@ import { Redirect } from 'react-router';
 
 const InstructorCourses = () => {
     const [courses,setCourses] = useState([{}]);
+    const [coursesTaught, setCoursesTaught] = useState([{}]);
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading,setLoading] = useState(true);
@@ -40,6 +41,11 @@ const InstructorCourses = () => {
             if(res.data.length>0){
                 setCourses(res.data);
             }
+            courses.forEach((course) => {
+                if(course.instructorEmail === info.user.email) {
+                    setCoursesTaught(...course);
+                }
+            });
             setLoading(false);
         } catch (error) {
             console.log(error.message)

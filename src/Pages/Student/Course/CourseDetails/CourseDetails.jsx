@@ -8,7 +8,6 @@ const StudentCourseDetail = () => {
     const { id } = useParams();
     const {info} = useContext(UserContext)
     const [data,setData] = useState();
-    const [applyData,setApplyData] = useState({});
     const [checkBox,setCheckBox] = useState(false);
     const detailElement = [
         { label: "Course Instructor Name", name: "instructor" },
@@ -27,11 +26,10 @@ const StudentCourseDetail = () => {
     const applyToCourse = async (e) => {
         e.preventDefault();
         try {
-            setApplyData({userId: info.user.id, courseId: id});
             await axios({
                 method: "POST",
                 url: behost + `student/courses/${id}`,
-                data: applyData,
+                data: {userId: info.user.id, courseId: id},
                 withCredentials: true,
             });
             setRedirect("/student/applied-courses");
