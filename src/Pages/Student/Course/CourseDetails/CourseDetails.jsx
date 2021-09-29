@@ -8,6 +8,7 @@ const StudentCourseDetail = () => {
     const { id } = useParams();
     const {info} = useContext(UserContext)
     const [data,setData] = useState();
+    const [applyData,setApplyData] = useState({});
     const [checkBox,setCheckBox] = useState(false);
     const detailElement = [
         { label: "Course Instructor Name", name: "instructor" },
@@ -23,6 +24,21 @@ const StudentCourseDetail = () => {
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading,setLoading] = useState(true);
+    const applyToCourse = async (e) => {
+        e.preventDefault();
+        try {
+            setApplyData({userId: info.user.id, courseId: id});
+            await axios({
+                method: "POST",
+                url: behost + `student/courses/${id}`,
+                data: applyData,
+                withCredentials: true,
+            });
+            setRedirect("/student/applied-courses");
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
     const renderElement = () => {
         return detailElement.map((ele, index) => (
             <div>
@@ -83,7 +99,7 @@ const StudentCourseDetail = () => {
                                 content="Apply"
                                 color="green"
                                 size="medium"
-                                onClick={() => {}}
+                                onClick={applyToCourse}
                             />
                         </div>
                     </div>
