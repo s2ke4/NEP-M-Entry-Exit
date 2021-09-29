@@ -1,15 +1,17 @@
-import CourseCard from '../CourseCard/CourseCard';
+import React from 'react'
 import { useState, useEffect,useContext } from 'react';
-import {UserContext} from '../../../../Providers/UserProvider'
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import { UserContext } from '../../../../Providers/UserProvider';
+import AppliedCourseCard from '../AppliedCourseCard/AppliedCourseCard';
 
-const InstructorCourses = () => {
+const AppliedCourses = () => {
     const [courses,setCourses] = useState([{}]);
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading,setLoading] = useState(true);
     const {info} = useContext(UserContext)
+    
     var courseImg = [
         "/assets/images/Courses/course1.jpg",
         "/assets/images/Courses/course2.jpg",
@@ -21,26 +23,29 @@ const InstructorCourses = () => {
         "/assets/images/Courses/course8.jpg",
     ];
     useEffect(()=>{
-          if (!info.user || info.user.role!=="instructor") {
-             if(!info.user){
-               setRedirect("/");
-             }else if(info.user==="admin"){
-               setRedirect("/admin/dashboard")
-             }else{
-               setRedirect("/student/dashboard")
-             }
-          }else{
-              fetchData();
-          }
-      },[info])
+        if(!info.user) {
+            fetchData();
+        }
+        else if (info.user.role!=="student") {
+            if(info.user==="instructor"){
+                setRedirect("/instructor/dashboard")
+            } else {
+                setRedirect("/admin/dashboard")
+            }
+        }else{
+            fetchData();
+        }
+    },[info])
 
     const fetchData = async()=>{
         try {
-            let res = await axios.get(`${behost}course/get`);
+            let res = await axios.get(`${behost}course/get/applied-courses`);
             if(res.data.length>0){
                 setCourses(res.data);
+                setLoading(false);
+            }else{
+                setRedirect("/404")
             }
-            setLoading(false);
         } catch (error) {
             console.log(error.message)
         }
@@ -58,7 +63,7 @@ const InstructorCourses = () => {
                     {
                         courses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
+                                <AppliedCourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
                             </div>
                         ))
                     }
@@ -68,4 +73,4 @@ const InstructorCourses = () => {
     )
 }
 
-export default InstructorCourses
+export default AppliedCourses

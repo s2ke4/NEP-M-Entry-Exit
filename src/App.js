@@ -20,6 +20,7 @@ import AdminDashboard from './Pages/Admin/Dashboard/Dashboard';
 import InstructorCourseDetail from './Pages/Instructor/Course/CourseDetails/CourseDetails';
 import StudentCourseDetail from './Pages/Student/Course/CourseDetails/CourseDetails';
 import UserProvider from './Providers/UserProvider'
+import AppliedCourses from './Pages/Student/Course/AppliedCourses/AppliedCourses';
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -57,6 +58,7 @@ const App = ()=> {
                 <Route exact path="/instructor/courses/:id/enrollments" component={CourseEnrollments} />
                 <Route exact path="/student/dashboard" component ={StudentDashboard} />
                 <Route exact path="/student/courses/:id" component={StudentCourseDetail} />
+                <Route exact path="/student/applied-courses" component={AppliedCourses} />
                 <Route exact path="/admin/rolelist" component={RoleList} />
                 <Route exact path="/admin/add-role" component={AddRole}/>     
                 <Route exact path="/student/sign-up" component={SignupPage} />
