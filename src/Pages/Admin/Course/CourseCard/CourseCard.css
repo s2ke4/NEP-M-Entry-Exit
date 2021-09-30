@@ -1,0 +1,5 @@
+.pending-request{
+    position: absolute;
+    bottom: .75em;
+    right: 1em;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Icon, Image } from 'semantic-ui-react'
+import './CourseCard.css'
 
 const CourseCard = (props) => {
   return (
@@ -24,7 +25,9 @@ const CourseCard = (props) => {
             <Icon name='users' />
             { props.registeredStudent } / {props.totalSeat}
           </Link>
-        
+          <Link className="pending-request" to={{pathname: `/admin/course/request/${props.id}`}}>
+            Pending Request : {props.requests}
+          </Link>
       </Card.Content>
     </Card>
   );

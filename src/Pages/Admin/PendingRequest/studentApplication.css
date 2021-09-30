@@ -1,0 +1,12 @@
+.editbutton-profile-page{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .profile-information-table{
+    padding: 0 10%;
+  }
+.empty-msg{
+  font-size: 18px;
+  margin: auto;
+}

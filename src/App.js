@@ -8,6 +8,8 @@ import AdminCourseDetail from './Pages/Admin/Course/CourseDetail/CourseDetail'
 import SignupPage from './Pages/Student/Signup/SignupPage'
 import AddRole from './Pages/Admin/AccessRoles/AddRole'
 import RoleList from './Pages/Admin/AccessRoles/RoleList'
+import PendingStudentList from './Pages/Admin/PendingRequest/StudentList'
+import StudentApplication from './Pages/Admin/PendingRequest/StudentApplication'
 import InstructorDashboard from './Pages/Instructor/Dashboard/Dashboard'
 import StudentDashboard from './Pages/Student/Dashboard/Dashboard'
 import axios from 'axios'
@@ -50,8 +52,11 @@ const App = ()=> {
                 <Route exact path="/" component={StudentDashboard} />
                 <Route exact path="/admin/add-course" component={AddCourse} />
                 <Route exact path="/admin/courses/:id" component={AdminCourseDetail} />
+                <Route exact path="/admin/course/request/:id" component={PendingStudentList} />
                 <Route exact path="/admin/courses/:id/enrollments" component={CourseEnrollments} />
                 <Route exact path="/admin/edit-course/:id" component={EditCourse} />
+                <Route exact path="/admin/course/:courseId/student-profile/:studentId" component={StudentApplication} />
+                <Route exact path="/admin/dashboard" component ={AdminDashboard} />
                 <Route exact path="/admin/dashboard" component ={AdminDashboard} />
                 <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
                 <Route exact path="/instructor/courses/:id" component={InstructorCourseDetail} />

@@ -101,6 +101,19 @@ const AdminCourseDetail = () => {
               {data.courseName}
               <Button
                 floated="right"
+                icon="users"
+                content="Enrolled Student"
+                color="blue"
+                onClick={() => setRedirect(`/admin/edit-course/${id}`)}
+              />
+              <Button
+                floated="right"
+                icon="users"
+                content="Pending Request"
+                onClick={() => setRedirect(`/admin/course/request/${id}`)}
+              />
+              <Button
+                floated="right"
                 icon="edit"
                 content="Edit"
                 color="green"

@@ -68,6 +68,8 @@ const AdminCourses = () => {
                 courseImg={courseImg[index % 7]}
                 courseId={course.id}
                 registeredStudent={course.registeredStudent}
+                requests={course.requests}
+                id={course.id}
               />
             </div>
           ))}
