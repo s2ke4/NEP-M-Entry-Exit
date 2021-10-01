@@ -26,7 +26,6 @@ const items = [
   { content: "About Us", key: "About Us", link: "/admin/about-us" },
   { content: "Roles", key: "Roles", link: "/roles" },
   { content: "Add Course", key: "Add Course", link: "/admin/add-course" },
-  { content: "Student Applications", key: "Student Applications", link: "/student-applications" },
 ];
 
 const NavBarMobile = (props) => {
