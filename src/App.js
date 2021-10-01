@@ -8,6 +8,7 @@ import AdminCourseDetail from './Pages/Admin/Course/CourseDetail/CourseDetail'
 import SignupPage from './Pages/Student/Signup/SignupPage'
 import AddRole from './Pages/Admin/AccessRoles/AddRole'
 import RoleList from './Pages/Admin/AccessRoles/RoleList'
+import EditRole from './Pages/Admin/AccessRoles/EditRole'
 import PendingStudentList from './Pages/Admin/PendingRequest/StudentList'
 import StudentApplication from './Pages/Admin/PendingRequest/StudentApplication'
 import InstructorDashboard from './Pages/Instructor/Dashboard/Dashboard'
@@ -23,6 +24,7 @@ import InstructorCourseDetail from './Pages/Instructor/Course/CourseDetails/Cour
 import StudentCourseDetail from './Pages/Student/Course/CourseDetails/CourseDetails';
 import UserProvider from './Providers/UserProvider'
 import AppliedCourses from './Pages/Student/Course/AppliedCourses/AppliedCourses';
+import Notification from './Pages/Student/Notification';
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -66,8 +68,10 @@ const App = ()=> {
                 <Route exact path="/student/applied-courses" component={AppliedCourses} />
                 <Route exact path="/admin/rolelist" component={RoleList} />
                 <Route exact path="/admin/add-role" component={AddRole}/>     
+                <Route exact path="/admin/editrole/:id" component={EditRole}/>     
                 <Route exact path="/student/sign-up" component={SignupPage} />
-                <Route exact path="/user/profile" component={UserProfile} />          
+                <Route exact path="/user/profile" component={UserProfile} />   
+                <Route exact path="/student/notifications" component={Notification} />          
               </Switch>
             </NavDecider>
           </MediaContextProvider>

@@ -5,7 +5,7 @@ import axios from "axios";
 import { UserContext } from "../../../Providers/UserProvider";
 
 const RoleList = () => {
-  const { info } = useContext(UserContext);
+  const {info} = useContext(UserContext);
   const [data, setData] = useState([]);
   const [redirect, setRedirect] = useState(null);
   const behost = process.env.REACT_APP_BACKEND_HOST;
@@ -76,6 +76,9 @@ const RoleList = () => {
                 <Table.Cell>{val.role}</Table.Cell>
                 <Table.Cell>
                   <Button onClick={() => handleDelete(val.id)}>Delete</Button>
+                </Table.Cell>
+                <Table.Cell>
+                  <Button onClick={() => setRedirect(`/admin/editrole/${val.id}`)}>Edit</Button>
                 </Table.Cell>
               </Table.Row>
             ))}

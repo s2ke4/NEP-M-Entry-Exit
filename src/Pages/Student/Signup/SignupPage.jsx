@@ -169,9 +169,6 @@ const SignupPage = ()=>{
               color='teal'
             />
           </Form>
-          <Message>
-            <strong>Already have a profile ? <Link to="/about">Login</Link></strong>
-          </Message>
         </Grid.Column>}
       </Grid> 
     </div>
