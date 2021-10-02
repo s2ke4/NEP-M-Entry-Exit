@@ -2,6 +2,7 @@ import { useState, useEffect, React, useContext } from "react";
 import { Redirect, useParams, Link } from "react-router-dom";
 import { Table, Button, Message } from "semantic-ui-react";
 import axios from "axios";
+import Loader from '../../Shared/Loading/Loading'
 import { UserContext } from "../../../Providers/UserProvider";
 
 const RoleList = () => {
@@ -36,16 +37,18 @@ const RoleList = () => {
   };
 
   useEffect(() => {
-    if (!info.user || info.user.role !== "admin") {
-      if (!info.user) {
-        setRedirect("/");
-      } else if (info.user === "istructor") {
-        setRedirect("/instructor/dashboard");
+    if(!info.isLoading){
+      if (!info.user || info.user.role !== "admin") {
+        if (!info.user) {
+          setRedirect("/");
+        } else if (info.user === "instructor") {
+          setRedirect("/instructor/dashboard");
+        } else {
+          setRedirect("/student/dashboard");
+        }
       } else {
-        setRedirect("/student/dashboard");
+        fetchData();
       }
-    } else {
-      fetchData();
     }
   }, [info]);
 
@@ -56,7 +59,7 @@ const RoleList = () => {
   return (
     <div className="ui container">
       <h2> Role List </h2>
-      <div className="ui celled list">
+      {loading?<Loader />:<div className="ui celled list">
         <Table celled selectable>
           <Table.Header>
             <Table.Row>
@@ -84,7 +87,7 @@ const RoleList = () => {
             ))}
           </Table.Body>
         </Table>
-      </div>
+      </div>}
       <Message>
         <strong>
           Add <Link to="/admin/addrole">New Roles</Link>

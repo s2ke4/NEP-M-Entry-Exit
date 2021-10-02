@@ -2,6 +2,7 @@ import { Button, Form, Container, Segment } from "semantic-ui-react";
 import { useState, useEffect, useContext } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { UserContext } from "../../../../Providers/UserProvider";
+import Loader from '../../../Shared/Loading/Loading'
 import axios from "axios";
 
 const EditCourse = () => {
@@ -111,7 +112,7 @@ const EditCourse = () => {
         withCredentials: true,
       });
       setLoadingBtn(false);
-      setRedirect("/admin/dashboard");
+      setRedirect(`/admin/courses/${id}`);
     } catch (error) {
       console.log(error.message);
     }
@@ -132,16 +133,18 @@ const EditCourse = () => {
   };
 
   useEffect(() => {
-    if (!info.user || info.user.role !== "admin") {
-      if (!info.user) {
-        setRedirect("/");
-      } else if (info.user === "istructor") {
-        setRedirect("/instructor/dashboard");
+    if(!info.isLoading){
+      if (!info.user || info.user.role !== "admin") {
+        if (!info.user) {
+          setRedirect("/");
+        } else if (info.user === "istructor") {
+          setRedirect("/instructor/dashboard");
+        } else {
+          setRedirect("/student/dashboard");
+        }
       } else {
-        setRedirect("/student/dashboard");
+        fetchData();
       }
-    } else {
-      fetchData();
     }
   }, [info]);
 
@@ -181,7 +184,7 @@ const EditCourse = () => {
   return (
     <Container>
       {loading ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <div>
           <Segment>
@@ -195,6 +198,15 @@ const EditCourse = () => {
                 onClick={editCourse}
               >
                 {loadingBtn ? "Updating..." : "Update Course"}
+              </Button>
+              <Button
+                color="blue"
+                style={{ marginTop: "2%" }}
+                type="button"
+                floated="right"
+                onClick={()=>setRedirect(`/admin/courses/${id}`)}
+              >
+                Cancel
               </Button>
             </Form>
           </Segment>

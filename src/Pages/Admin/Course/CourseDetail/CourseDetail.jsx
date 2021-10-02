@@ -1,6 +1,7 @@
-import { Button, Container, Segment, Modal } from "semantic-ui-react";
+import { Button, Container, Segment, Modal, Radio } from "semantic-ui-react";
 import { useState, useEffect, useContext } from "react";
 import { Redirect, useParams } from "react-router-dom";
+import Loader from '../../../Shared/Loading/Loading'
 import axios from "axios";
 import { UserContext } from "../../../../Providers/UserProvider";
 import "./CourseDetail.css";
@@ -47,27 +48,30 @@ const AdminCourseDetail = () => {
     }
   };
 
-  const handleDelete = async () => {
+  const toggleActiveCourse = async () => {
     try {
-      await axios.delete(`${behost}course/delete/${id}`);
       setOpen(false);
-      setRedirect("/admin/dashboard");
+      setData({ ...data, isActive: !data.isActive });
+      await axios.put(`${behost}course/toggle/${id}`);
     } catch (error) {
+      setData({ ...data, isActive: !data.isActive });
       console.log(error.message);
     }
   };
 
   useEffect(() => {
-    if (!info.user || info.user.role !== "admin") {
-      if (!info.user) {
-        setRedirect("/");
-      } else if (info.user === "instructor") {
-        setRedirect("/instructor/dashboard");
+    if (!info.isLoading) {
+      if (!info.user || info.user.role !== "admin") {
+        if (!info.user) {
+          setRedirect("/");
+        } else if (info.user === "instructor") {
+          setRedirect("/instructor/dashboard");
+        } else {
+          setRedirect("/student/dashboard");
+        }
       } else {
-        setRedirect("/student/dashboard");
+        fetchData();
       }
-    } else {
-      fetchData();
     }
   }, [info]);
 
@@ -77,20 +81,25 @@ const AdminCourseDetail = () => {
 
   return (
     <Container>
-      {loading ? (
-        <p>Loading...</p>
+      {loading || info.isLoading ? (
+        <Loader />
       ) : (
         <div className="course-detail">
           <Modal size="small" open={open} onClose={() => setOpen(false)}>
-            <Modal.Header>Delete This Course</Modal.Header>
+            <Modal.Header>
+              {data.isActive
+                ? "Deactivate This Course"
+                : "Activate This Course"}
+            </Modal.Header>
             <Modal.Content>
               <p>
-                Are you sure you want to delete this course. This action can't
-                be undone.
+                {data.isActive
+                  ? "Are you sure you want to deactivate this course.After deactivation of the course student can't send the request for enrolling in this course"
+                  : "Are you sure you want to activate this course.After activation of the course student can send the request for enrolling in this course"}
               </p>
             </Modal.Content>
             <Modal.Actions>
-              <Button negative onClick={handleDelete}>
+              <Button negative onClick={toggleActiveCourse}>
                 Yes
               </Button>
               <Button onClick={() => setOpen(false)}>No</Button>
@@ -119,14 +128,15 @@ const AdminCourseDetail = () => {
                 color="green"
                 onClick={() => setRedirect(`/admin/edit-course/${id}`)}
               />
-              <Button
-                floated="right"
-                icon="trash"
-                color="red"
-                onClick={() => setOpen(true)}
-                content="Delete"
-              />
             </h2>
+            <div className="toggle-active-course">
+              <p>Active</p>
+              <Radio
+                checked={data.isActive}
+                onClick={()=>setOpen(true)}
+                toggle
+              />
+            </div>
             {renderElement()}
           </Segment>
         </div>
