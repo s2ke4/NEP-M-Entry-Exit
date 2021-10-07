@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Notification = () => {
 
-    const [notification, setNotification] = useState({});
+    const [notification, setNotification] = useState([{}]);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading,setLoading] = useState(true);
     const [redirect, setRedirect] = useState(null);
@@ -27,27 +27,19 @@ const Notification = () => {
   
     useEffect(() => {
         fetchData();
-    },)
+    },[])
 
     if (redirect) {
       return <Redirect to={redirect} />;
     }
 
-    const enrollments = [
-        {name: 'Abhay Dwiwedi', email: '201951002@iiitvadodara.ac.in'},
-        {name: 'Ayush Patel', email: '201951038@iiitvadodara.ac.in'},
-        {name: 'Darshan Devendra Hande', email: '201951052@iiitvadodara.ac.in'},
-        {name: 'Keshav Agarwal', email: '201951080@iiitvadodara.ac.in'},
-        {name: 'Hari Om', email: '201951068@iiitvadodara.ac.in'},
-        {name: 'Nitanshu Lokhande', email: '201951107@iiitvadodara.ac.in'},
-        {name: 'Divyam Solanki', email: 'solankidivyam00@gmail.com'},
-        {name: 'Chirag Jain', email: '201951049@iiitvadodara.ac.in'},
-    ];
 
-    const renderTableRow = (notification) => {
+    const renderTableRow = (noti) => {
         return <Table.Row>
-            <Table.Cell>{notification.CourseId}</Table.Cell>
-            <Table.Cell>{notification.StudnetId}</Table.Cell>
+            <Table.Cell>{noti.courseName}</Table.Cell>
+            <Table.Cell>{noti.instructor}</Table.Cell>
+            <Table.Cell>{noti.message}</Table.Cell>
+            <Table.Cell>{noti.status}</Table.Cell>
         </Table.Row>
     }
 
@@ -64,7 +56,7 @@ const Notification = () => {
                 </Table.Header>
                 <Table.Body>
                     {
-                        enrollments.map((enrollment,index) => (renderTableRow(enrollment)))
+                        notification.map((noti,index) => (renderTableRow(noti)))
                     }
                 </Table.Body>
             </Table>

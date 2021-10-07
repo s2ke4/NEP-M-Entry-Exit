@@ -1,24 +1,66 @@
-import React from 'react'
-import { Table, Header, Icon, Divider } from 'semantic-ui-react'
+import React, { useState, useEffect, useContext } from "react";
+import { Redirect, useParams } from "react-router-dom";
+import { Table, Header, Icon, Divider, Button } from 'semantic-ui-react'
 import '../CourseEnrollments/CourseEnrollments.css'
+import axios from "axios";
+import { UserContext } from "../../../../Providers/UserProvider";
 
 const CourseEnrollements = (props) => {
 
-    const enrollments = [
-        {name: 'Abhay Dwiwedi', email: '201951002@iiitvadodara.ac.in'},
-        {name: 'Ayush Patel', email: '201951038@iiitvadodara.ac.in'},
-        {name: 'Darshan Devendra Hande', email: '201951052@iiitvadodara.ac.in'},
-        {name: 'Keshav Agarwal', email: '201951080@iiitvadodara.ac.in'},
-        {name: 'Hari Om', email: '201951068@iiitvadodara.ac.in'},
-        {name: 'Nitanshu Lokhande', email: '201951107@iiitvadodara.ac.in'},
-        {name: 'Divyam Solanki', email: 'solankidivyam00@gmail.com'},
-        {name: 'Chirag Jain', email: '201951049@iiitvadodara.ac.in'},
-    ];
+
+    const courseId = useParams();
+    const {info} = useContext(UserContext);
+    const [enrollments, setEnrollments] = useState([]);
+    const [redirect, setRedirect] = useState(null);
+    const behost = process.env.REACT_APP_BACKEND_HOST;
+    const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    try {
+      const id = courseId.id;
+      let res = await axios.get(`${behost}course/get/enrollments/${id}`);
+      if (res.data.length > 0) {
+        setEnrollments(res.data);
+        setLoading(false);
+      } else {
+        setRedirect("/404");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+  useEffect(() => {
+    if(!info.isLoading){
+      if (!info.user || info.user.role !== "admin") {
+        if (!info.user) {
+          setRedirect("/");
+        } else if (info.user === "instructor") {
+          setRedirect("/instructor/dashboard");
+        } else {
+          setRedirect("/student/dashboard");
+        }
+      } else {
+        fetchData();
+      }
+    }
+  }, [info]);
+
+  if (redirect) {
+    return <Redirect to={redirect} />;
+  }
+
 
     const renderTableRow = (enrollment) => {
         return <Table.Row>
             <Table.Cell>{enrollment.name}</Table.Cell>
             <Table.Cell>{enrollment.email}</Table.Cell>
+            <Table.Cell>{enrollment.institute}</Table.Cell>
+            <Table.Cell>{enrollment.phone}</Table.Cell>
+            <Table.Cell>
+              <Button onClick={() => setRedirect(`/admin/student-profile/${enrollment.id}`)}>Profile</Button>
+            </Table.Cell>
         </Table.Row>
     }
 
@@ -39,6 +81,8 @@ const CourseEnrollements = (props) => {
                     <Table.Row>
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
+                        <Table.HeaderCell>Institute</Table.HeaderCell>
+                        <Table.HeaderCell>Phone no.</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>

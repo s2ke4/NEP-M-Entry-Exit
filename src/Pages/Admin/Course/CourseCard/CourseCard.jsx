@@ -18,10 +18,7 @@ const CourseCard = (props) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-          <Link to={{pathname: `/admin/courses/1/enrollments`, obj: {
-            courseCode: props.courseName,
-            courseEnrollments: props.courseEnrollments,
-          }}}>
+          <Link to={{pathname: `/admin/courses/${props.courseId}/enrollments`, obj: props.courseId}}>
             <Icon name='users' />
             { props.registeredStudent } / {props.totalSeat}
           </Link>
