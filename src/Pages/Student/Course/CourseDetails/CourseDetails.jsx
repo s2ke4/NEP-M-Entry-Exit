@@ -51,9 +51,14 @@ const StudentCourseDetail = () => {
     try {
       let res = await axios.get(`${behost}course/get/${id}`);
       if (res.data) {
-        setData(res.data.courseDetails[0]);
-        setShouldApply(res.data.shouldApply);
-        setLoading(false);
+        if(info.user && info.user.role === "student") {
+          setData(res.data.courseDetails[0]);
+          setShouldApply(res.data.shouldApply);
+          setLoading(false);
+        } else {
+          setData(res.data[0]);
+          setLoading(false);
+        }
       } else {
         setRedirect("/404");
       }
@@ -87,7 +92,7 @@ const StudentCourseDetail = () => {
       ) : (
         <div className="course-detail">
           <Segment>{renderElement()}</Segment>
-          {info.user && shouldApply ? (
+          {info.user && shouldApply && (data['registeredStudent'] < data['totalSeat']) && data['isActive'] ? (
             <div>
               <div className="student-course-details-checkbox-div">
                 <Checkbox

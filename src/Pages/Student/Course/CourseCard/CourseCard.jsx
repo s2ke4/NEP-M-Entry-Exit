@@ -27,7 +27,7 @@ const CourseCard = (props) => {
           {
             (props.courseType === 0)?
               <Button
-              disabled={(info.user)?false:true}
+              disabled={(info.user && props.registeredStudent < props.totalSeat && props.isActive)?false:true}
               floated="right"
               content="Apply"
               color="green"

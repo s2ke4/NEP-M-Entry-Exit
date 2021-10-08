@@ -64,7 +64,7 @@ const StudentCourses = () => {
                     {
                         courses.remainingCourses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} isActive={course.isActive} />
                             </div>
                         ))
                     }
@@ -72,7 +72,7 @@ const StudentCourses = () => {
                     {
                         courses.appliedCourses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {1} />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {1} isActive={course.isActive} />
                             </div>
                         ))
                     }
@@ -80,7 +80,7 @@ const StudentCourses = () => {
                     {
                         courses.enrolledCourses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {2} />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {2} isActive={course.isActive} />
                             </div>
                         ))
                     }
@@ -90,7 +90,7 @@ const StudentCourses = () => {
                     {
                         courses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} isActive={course.isActive} />
                             </div>
                         ))
                     }
