@@ -24,14 +24,37 @@ const CourseCard = (props) => {
         <div className="student-course-card-footer">
           <Icon name='users' />
           { props.registeredStudent } / {props.totalSeat}
-          <Button
-            disabled={(info.user)?false:true}
-            floated="right"
-            content="Apply"
-            color="green"
-            size="mini"
-            onClick={() => {history.push(`/student/courses/${props.courseId}`)}}
-          />
+          {
+            (props.courseType === 0)?
+              <Button
+              disabled={(info.user)?false:true}
+              floated="right"
+              content="Apply"
+              color="green"
+              size="mini"
+              onClick={() => {history.push(`/student/courses/${props.courseId}`)}}
+            />
+            :
+            null
+          }
+          {
+            (props.courseType === 1)?
+              <div style={{float: 'right'}}>
+                <Icon name="clock" color="red" />
+                Applied
+              </div>
+            :
+              null
+          }
+          {
+            (props.courseType === 2)?
+              <div style={{float: 'right'}}>
+                <Icon name="check circle" color="green"/>
+                Enrolled
+              </div>
+              :
+              null
+          }
         </div>
       </Card.Content>
     </Card>
