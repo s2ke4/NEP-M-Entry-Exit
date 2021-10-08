@@ -7,17 +7,20 @@ import { UserContext } from '../../../../Providers/UserProvider';
 const CourseCard = (props) => {
   const history = useHistory();
   const {info} = useContext(UserContext);
+  let reducedCourseName = (props.courseName.length > 27) ? props.courseName.substring(0,27) + "..." : props.courseName;
+  let reducedInstructorName = (props.courseInstructor.length > 30) ? props.courseInstructor.substring(0,30) + "..." : props.courseInstructor;
+  console.log(typeof props.courseName);
   return (
     <Card>
       <Image src={props.courseImg} wrapped ui={false} />
       <Card.Content>
         <Card.Header>
           <Link to={`/student/courses/${props.courseId}`}>
-            {props.courseName}
+          {reducedCourseName}
           </Link>
         </Card.Header>
         <Card.Description>
-          Teacher : {props.courseInstructor}
+          Teacher : {reducedInstructorName}
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
