@@ -8,6 +8,7 @@ const StudentCourseDetail = () => {
   const { id } = useParams();
   const { info } = useContext(UserContext);
   const [data, setData] = useState();
+  const [shouldApply, setShouldApply] = useState();
   const [checkBox, setCheckBox] = useState(false);
   const detailElement = [
     { label: "Course Instructor Name", name: "instructor" },
@@ -49,8 +50,9 @@ const StudentCourseDetail = () => {
   const fetchData = async () => {
     try {
       let res = await axios.get(`${behost}course/get/${id}`);
-      if (res.data.length > 0) {
-        setData(res.data[0]);
+      if (res.data) {
+        setData(res.data.courseDetails[0]);
+        setShouldApply(res.data.shouldApply);
         setLoading(false);
       } else {
         setRedirect("/404");
@@ -85,7 +87,7 @@ const StudentCourseDetail = () => {
       ) : (
         <div className="course-detail">
           <Segment>{renderElement()}</Segment>
-          {info.user ? (
+          {info.user && shouldApply ? (
             <div>
               <div className="student-course-details-checkbox-div">
                 <Checkbox
