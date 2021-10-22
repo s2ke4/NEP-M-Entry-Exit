@@ -1,0 +1,8 @@
+.editbutton-profile-page{
+  display: flex;
+  justify-content: center;
+}
+
+.profile-information-table{
+  padding: 0 10%;
+}
