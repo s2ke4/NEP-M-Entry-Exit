@@ -26,6 +26,7 @@ import UserProvider from './Providers/UserProvider'
 import AppliedCourses from './Pages/Student/Course/AppliedCourses/AppliedCourses';
 import Notification from './Pages/Student/Notification';
 import MyCourses from './Pages/Student/Course/MyCourses/MyCourses';
+import StudentVerify from './Pages/Admin/PendingRequest/StudentVerify';
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -61,6 +62,7 @@ const App = ()=> {
                 <Route exact path="/admin/course/:courseId/student-profile/:studentId" component={StudentApplication} />
                 <Route exact path="/admin/dashboard" component ={AdminDashboard} />
                 <Route exact path="/admin/dashboard" component ={AdminDashboard} />
+                <Route exact path="/admin/course/verify/:studentId" component ={StudentVerify} />
                 <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
                 <Route exact path="/instructor/courses/:id" component={InstructorCourseDetail} />
                 <Route exact path="/instructor/courses/:id/enrollments" component={CourseEnrollments} />
@@ -74,7 +76,8 @@ const App = ()=> {
                 <Route exact path="/admin/student-profile/:id" component={UserProfile}/>     
                 <Route exact path="/student/sign-up" component={SignupPage} />
                 <Route exact path="/user/profile" component={UserProfile} />   
-                <Route exact path="/student/notifications" component={Notification} />          
+                <Route exact path="/student/notifications" component={Notification} /> 
+
               </Switch>
             </NavDecider>
           </MediaContextProvider>

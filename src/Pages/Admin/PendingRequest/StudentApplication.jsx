@@ -31,6 +31,7 @@ const UserProfile = () => {
   const fetchData = async () => {
     try {
       let res = await axios.get(`${behost}student/profile/${studentId}`);
+      console.log(studentId);
       if (res.data) {
         setData(res.data);
         setLoading(false);
@@ -41,6 +42,8 @@ const UserProfile = () => {
       console.log(error.message);
     }
   };
+
+  
 
   const acceptUserEnrollment = async () => {
     try {
@@ -56,6 +59,12 @@ const UserProfile = () => {
       console.log(error.message);
     }
   };
+
+  const verifystudentdata = async() => {
+    //console.log(studentId);
+    
+    setRedirect(`/admin/course/verify/${studentId}`);
+  }
 
   const rejectUserEnrollment = async () => {
     try {
@@ -176,6 +185,7 @@ const UserProfile = () => {
               <Button
                 floated="left"
                 content="Verify"
+                onClick = {verifystudentdata}
                 color="blue"
                 size="medium"
               />

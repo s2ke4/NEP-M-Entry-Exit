@@ -31,7 +31,7 @@ const RoleList = () => {
       if (!info.user || info.user.role !== "admin") {
         if (!info.user) {
           setRedirect("/");
-        } else if (info.user === "istructor") {
+        } else if (info.user === "instructor") {
           setRedirect("/instructor/dashboard");
         } else {
           setRedirect("/student/dashboard");
@@ -52,7 +52,7 @@ const RoleList = () => {
         <p>Loading...</p>
       ) : (
         <div>
-          <h3>Pending Reuest for {data.courseName} </h3>
+          <h3>Pending Request for {data.courseName} </h3>
           <div className="ui celled list">
             {data.students.length === 0 ? (
               <p className="empty-msg">There is no request pending for this course</p>
@@ -61,8 +61,8 @@ const RoleList = () => {
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>Sr. No</Table.HeaderCell>
-                    <Table.HeaderCell>Student Name</Table.HeaderCell>
-                    <Table.HeaderCell>Student Institute</Table.HeaderCell>
+                    <Table.HeaderCell>Student ABC account</Table.HeaderCell>
+                    <Table.HeaderCell>Student email</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
@@ -70,8 +70,8 @@ const RoleList = () => {
                   {data.students.map((val, index) => (
                     <Table.Row>
                       <Table.Cell>{index + 1}</Table.Cell>
-                      <Table.Cell>{val.name}</Table.Cell>
-                      <Table.Cell>{val.institute}</Table.Cell>
+                      <Table.Cell>{val.accountnumber}</Table.Cell>
+                      {/* <Table.Cell>{val.info.user.email}</Table.Cell> */}
                       <Table.Cell>
                         <Button
                           onClick={() =>
