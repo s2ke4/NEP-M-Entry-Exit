@@ -14,12 +14,8 @@ const Notification = () => {
       try {
         let res = await axios.get(`${behost}student/notifications`);
         console.log(res.data);
-        if (res.data.length > 0) {
-          setNotification(res.data);
-          setLoading(false);
-        } else {
-          setRedirect("/404");
-        }
+        setNotification(res.data);
+        setLoading(false);
       } catch (error) {
         console.log(error.message);
       }

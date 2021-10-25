@@ -40,12 +40,8 @@ const AppliedCourses = () => {
     const fetchData = async()=>{
         try {
             let res = await axios.get(`${behost}course/get/applied-courses`);
-            if(res.data.length>0){
-                setCourses(res.data);
-                setLoading(false);
-            }else{
-                setRedirect("/404")
-            }
+            setCourses(res.data);
+            setLoading(false);
         } catch (error) {
             console.log(error.message)
         }
