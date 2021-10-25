@@ -4,7 +4,7 @@ import {
     Icon,
     Divider,
   } from "semantic-ui-react";
-  import { Redirect, useParams } from "react-router-dom";
+  import { Redirect, useParams, Link } from "react-router-dom";
   import { useEffect, useState, useContext } from "react";
   import axios from "axios";
   import { UserContext } from "../../../Providers/UserProvider";
@@ -56,8 +56,8 @@ import {
 
   const renderTableRow = (enrollment) => {
     return <Table.Row>
-        <Table.Cell>{enrollment.courseName}</Table.Cell>
-        <Table.Cell>{enrollment.courseLink}</Table.Cell>
+        <Table.Cell><a href = "http://localhost:3000/college/demo" target = '_blank'>{enrollment.courseName}</a></Table.Cell>
+        {/* <Table.Cell><Link to = {enrollment.courseLink}>{enrollment.courseLink}</Link></Table.Cell> */}
         <Table.Cell>{enrollment.instituteName}</Table.Cell>
         <Table.Cell>{enrollment.creditEarned}</Table.Cell>
         <Table.Cell>{enrollment.expiry}</Table.Cell>
@@ -85,7 +85,7 @@ import {
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Course Name</Table.HeaderCell>
-                    <Table.HeaderCell>Course Link</Table.HeaderCell>
+                    {/* <Table.HeaderCell>Course Link</Table.HeaderCell> */}
                     <Table.HeaderCell>Institute</Table.HeaderCell>
                     <Table.HeaderCell>Credits Earned</Table.HeaderCell>
                     <Table.HeaderCell>Expiry</Table.HeaderCell>
