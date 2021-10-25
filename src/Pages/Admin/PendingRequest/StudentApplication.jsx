@@ -86,7 +86,7 @@ const UserProfile = () => {
       if (!info.user || info.user.role !== "admin") {
         if (!info.user) {
           setRedirect("/");
-        } else if (info.user === "istructor") {
+        } else if (info.user === "instructor") {
           setRedirect("/instructor/dashboard");
         } else {
           setRedirect("/student/dashboard");
@@ -136,19 +136,19 @@ const UserProfile = () => {
             <Table.Body>
               <Table.Row>
                 <Table.Cell width={2}>Name</Table.Cell>
-                <Table.Cell>{data.firstname + " " + data.lastname}</Table.Cell>
+                <Table.Cell>{data.name}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Email</Table.Cell>
                 <Table.Cell>{data.email}</Table.Cell>
               </Table.Row>
-              <Table.Row>
+              {/* <Table.Row>
                 <Table.Cell>Phone Number</Table.Cell>
-                <Table.Cell>{data.phone}</Table.Cell>
-              </Table.Row>
+                <Table.Cell>{data.number}</Table.Cell>
+              </Table.Row> */}
               <Table.Row>
                 <Table.Cell>Date of Birth</Table.Cell>
-                <Table.Cell>{data.birthday}</Table.Cell>
+                <Table.Cell>{data.dob}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Insitute</Table.Cell>
@@ -158,10 +158,10 @@ const UserProfile = () => {
                 <Table.Cell>Gender</Table.Cell>
                 <Table.Cell>{data.gender}</Table.Cell>
               </Table.Row>
-              <Table.Row>
+              {/* <Table.Row>
                 <Table.Cell>Current Year</Table.Cell>
                 <Table.Cell>{data.currentyear}</Table.Cell>
-              </Table.Row>
+              </Table.Row> */}
             </Table.Body>
           </Table>
           <div>

@@ -62,7 +62,7 @@ const RoleList = () => {
                   <Table.Row>
                     <Table.HeaderCell>Sr. No</Table.HeaderCell>
                     <Table.HeaderCell>Student ABC account</Table.HeaderCell>
-                    <Table.HeaderCell>Student email</Table.HeaderCell>
+                    {/* <Table.HeaderCell>Student email</Table.HeaderCell> */}
                     <Table.HeaderCell></Table.HeaderCell>
                   </Table.Row>
                 </Table.Header>
@@ -70,7 +70,7 @@ const RoleList = () => {
                   {data.students.map((val, index) => (
                     <Table.Row>
                       <Table.Cell>{index + 1}</Table.Cell>
-                      <Table.Cell>{val.accountnumber}</Table.Cell>
+                      <Table.Cell>{val.id}</Table.Cell>
                       {/* <Table.Cell>{val.info.user.email}</Table.Cell> */}
                       <Table.Cell>
                         <Button
