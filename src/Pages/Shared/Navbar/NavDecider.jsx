@@ -4,6 +4,7 @@ import AdminNav from './AdminNav';
 import InstructorNav from './InstructorNav';
 import Navbar from './Navbar';
 import StudentNav from './StudentNav';
+import './NavDecider.css';
 
 const NavDecider = (props) => {
     const {info} = useContext(UserContext);
@@ -24,9 +25,9 @@ const NavDecider = (props) => {
     return (
         <div>
             { (navType) === 0  ? <AdminNav>{props.children}</AdminNav> : null }
-            { (navType) === 1  ? <InstructorNav>{props.children}</InstructorNav> : null}
+            { (navType) === 1  ? <div className="nav-decider-no-nav">{props.children}</div> : null}
             { (navType) === 2  ? <StudentNav>{props.children}</StudentNav> : null}
-            { (navType) === 3  ? <Navbar>{props.children}</Navbar> : null}
+            { (navType) === 3  ? <div className="nav-decider-no-nav">{props.children}</div> : null}
         </div>
     )
 }

@@ -153,7 +153,7 @@ const UserProfile = () => {
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Insitute</Table.Cell>
-                <Table.Cell>{data.institute}</Table.Cell>
+                <Table.Cell>{data.institutename}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Gender</Table.Cell>

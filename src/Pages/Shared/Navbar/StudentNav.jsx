@@ -23,7 +23,6 @@ const { Media } = AppMedia;
 
 const items = [
   { content: "Home", key: "Home", link: "/student/dashboard" },
-  { content: "About Us", key: "About Us", link: "/about-us" },
   { content: "My Courses", key: "My Courses", link: "/student/my-courses" },
   { content: "Applied Courses", key: "Applied Courses", link: "/student/applied-courses" },
   { content: "Notifications", key: "Notifications", link: "/student/notifications" }
