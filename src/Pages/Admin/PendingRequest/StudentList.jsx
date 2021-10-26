@@ -18,8 +18,6 @@ const RoleList = () => {
       if (res.data) {
         setData(res.data);
         setLoading(false);
-      } else {
-        setRedirect("/404");
       }
     } catch (error) {
       console.log(error.message);

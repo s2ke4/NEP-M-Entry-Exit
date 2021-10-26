@@ -1,48 +1,33 @@
-import { Button, Form, Grid, Header, Image, Message, Input, Select  } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Input  } from 'semantic-ui-react'
 import { useState, useEffect , React,useContext} from 'react';
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from 'axios';
 import {UserContext} from '../../../Providers/UserProvider'
-
-
-// const genderOptions = [
-//   { key: 'm', text: 'Male', value: 'male' },
-//   { key: 'f', text: 'Female', value: 'female' },
-//   { key: 'o', text: 'Other', value: 'other' },
-// ]
-// //roll number
-
-// const currentYear = [
-//   { key: '1', text: '1', value: '1' },
-//   { key: '2', text: '2', value: '2' },
-//   { key: '3', text: '3', value: '3' },
-//   { key: '4', text: '4', value: '4' },
-//   { key: '5', text: '5', value: '5' },
-// ]
-
 const SignupPage = ()=>{
 
   const behost = process.env.REACT_APP_BACKEND_HOST;
   const {info} = useContext(UserContext);
   const [studentData, setStudentData] = useState({});
+  const [errorMsg,setErrorMsg] = useState();
   const [redirect, setRedirect] = useState(null);
   const [wait,setWait] = useState(false);
 
   const addStudentData = async (e) => {
     e.preventDefault();
     studentData.email = info.user && info.user.email;
-    console.log(studentData);
       try {
-        // if(!studentData.ABCAccNo. ){
-        //   return;
-        // }
         setWait(true);
-        await axios({
+        let result = await axios({
           method: "POST",
           url: behost + "student/sign-up",
           data: studentData,
           withCredentials: true
         })
+        setWait(false);
+        if(!result.data.success){
+          setErrorMsg(result.data.msg);
+          return;
+        }
         setRedirect("/student/dashboard")
       } catch (error) {
         setWait(false);
@@ -58,13 +43,6 @@ const SignupPage = ()=>{
       [e.target.name]: e.target.value
     })
   }
-
-  // const setDataDropdown = (e,{ name, value }) => {
-  //   setStudentData({
-  //     ...studentData,
-  //     [name]: value,
-  //   })
-  // }
 
   useEffect(()=>{
     if(!info.isLoading){
@@ -109,6 +87,10 @@ const SignupPage = ()=>{
               color='teal'
             />
           </Form>
+          {errorMsg && <Message negative>
+            <Message.Header>OOPS!!</Message.Header>
+            <p>{errorMsg}</p>
+          </Message>}
         </Grid.Column>}
       </Grid> 
     </div>

@@ -38,6 +38,7 @@ const StudentCourses = () => {
 
     const fetchData = async()=>{
         try {
+            setLoading(true);
             let res = await axios.get(`${behost}course/get`);
             if(res){
                 setCourses(res.data);
@@ -45,6 +46,7 @@ const StudentCourses = () => {
             }else{
                 setRedirect("/404")
             }
+            setLoading(false);
         } catch (error) {
             console.log(error.message)
         }
@@ -60,7 +62,6 @@ const StudentCourses = () => {
                 loading?<p>loading...</p>:
                 info.user?
                 <div className="courses-grid-div">
-                    {/* courseType: 0, The Courses in which student hasn't applied or is not enrolled or has been rejected. */}
                     {
                         courses.remainingCourses.map((course,index) => (
                             <div key={index}>
