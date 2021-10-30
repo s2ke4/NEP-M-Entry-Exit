@@ -15,8 +15,7 @@ const UserProfile = ()=>{
   const fetchData = async () => {
     try {      
       let res = await axios.get(`${behost}student/profile/${id.id}`);
-      setProfile(res.data);
-      console.log(profile);
+      setProfile(res.data[0]);
     } catch (error) {
       console.log(error.message);
     }
@@ -32,7 +31,7 @@ const UserProfile = ()=>{
     <div>
       <Header as='h2' icon textAlign='center'>
         <Icon name='users' circular />
-        <Header.Content>{profile.firstname + profile.lastname}</Header.Content>
+        <Header.Content>{profile.name}</Header.Content>
       </Header>
       <div className="editbutton-profile-page">
         <Button positive icon>
@@ -52,19 +51,19 @@ const UserProfile = ()=>{
           <Table.Body>
             <Table.Row>
               <Table.Cell width={2}>Name</Table.Cell>
-              <Table.Cell>{profile.firstname + profile.lastname}</Table.Cell>
+              <Table.Cell>{profile.name}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Email</Table.Cell>
               <Table.Cell>{profile.email}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>Phone Number</Table.Cell>
-              <Table.Cell>{profile.phone}</Table.Cell>
+              <Table.Cell>ABC account number</Table.Cell>
+              <Table.Cell>{profile.id}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Date of Birth</Table.Cell>
-              <Table.Cell>{profile.birthday}</Table.Cell>
+              <Table.Cell>{profile.dob}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Insitute</Table.Cell>
@@ -74,10 +73,10 @@ const UserProfile = ()=>{
               <Table.Cell>Gender</Table.Cell>
               <Table.Cell>{profile.gender}</Table.Cell>
             </Table.Row>
-            <Table.Row>
+            {/* <Table.Row>
               <Table.Cell>Current Year</Table.Cell>
               <Table.Cell>{profile.currentyear}</Table.Cell>
-            </Table.Row>
+            </Table.Row> */}
           </Table.Body>
         </Table>
       </div>
