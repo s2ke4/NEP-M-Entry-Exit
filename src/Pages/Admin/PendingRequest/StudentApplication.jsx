@@ -33,7 +33,7 @@ const UserProfile = () => {
       let res = await axios.get(`${behost}student/profile/${studentId}`);
       console.log(studentId);
       if (res.data) {
-        setData(res.data);
+        setData(res.data[0]);
         setLoading(false);
       } else {
         setRedirect("/404");
@@ -152,8 +152,8 @@ const UserProfile = () => {
                 <Table.Cell>{data.dob}</Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>Insitute</Table.Cell>
-                <Table.Cell>{data.institutename}</Table.Cell>
+                <Table.Cell>Institute</Table.Cell>
+                <Table.Cell>{data.institute}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Gender</Table.Cell>
