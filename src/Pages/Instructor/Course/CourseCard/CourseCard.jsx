@@ -19,7 +19,7 @@ const CourseCard = (props) => {
         </Card.Description>
       </Card.Content>
       <Card.Content extra>
-          <Link to={{pathname: `/instructor/courses/1/enrollments`, obj: {
+          <Link to={{pathname: `/instructor/courses/${props.courseId}/enrollments`, obj: {
             courseCode: props.courseName,
             courseEnrollments: props.courseEnrollments,
           }}}>

@@ -21,7 +21,9 @@ const InstructorCourses = () => {
         "/assets/images/Courses/course8.jpg",
     ];
     useEffect(()=>{
-          if (!info.user || info.user.role!=="instructor") {
+        if(info.isLoading){
+            ;
+        }else if (!info.user || info.user.role!=="instructor") {
              if(!info.user){
                setRedirect("/");
              }else if(info.user==="admin"){
@@ -32,7 +34,7 @@ const InstructorCourses = () => {
           }else{
               fetchData();
           }
-      },[info])
+    },[info])
 
     const fetchData = async()=>{
         try {

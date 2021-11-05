@@ -9,6 +9,7 @@ const EditCourse = () => {
   const { id } = useParams();
   const labelStyle = { fontSize: "15px" };
   const behost = process.env.REACT_APP_BACKEND_HOST;
+  const fehost = process.env.REACT_APP_FRONTEND_HOST;
   const [data, setData] = useState({});
   const [redirect, setRedirect] = useState(null);
   const [loadingBtn, setLoadingBtn] = useState(false);
@@ -109,6 +110,17 @@ const EditCourse = () => {
         method: "PUT",
         url: behost + "course/edit/" + id,
         data,
+        withCredentials: true,
+      });
+      const courseData = {
+        courseName: data.courseName,
+        coursePageLink: fehost + "course/" + id,
+        maxCredit: data.credit
+      }
+      await axios({
+        method: "PUT",
+        url: behost + "abc/edit-course/" + data.abcCourseId,
+        data: courseData,
         withCredentials: true,
       });
       setLoadingBtn(false);

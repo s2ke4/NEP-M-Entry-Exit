@@ -113,7 +113,7 @@ const AdminCourseDetail = () => {
                 icon="users"
                 content="Enrolled Student"
                 color="blue"
-                onClick={() => setRedirect(`/admin/edit-course/${id}`)}
+                onClick={() => setRedirect(`/admin/courses/${id}/enrollments`)}
               />
               <Button
                 floated="right"

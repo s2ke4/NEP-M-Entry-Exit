@@ -2,12 +2,14 @@ import { Button, Form, Container, Segment } from "semantic-ui-react";
 import { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import { UserContext } from "../../../../Providers/UserProvider";
+import Loading from '../../../Shared/Loading/Loading'
 import axios from "axios";
 
 const AddCourse = () => {
   const { info } = useContext(UserContext);
   const labelStyle = { fontSize: "15px" };
   const behost = process.env.REACT_APP_BACKEND_HOST;
+  const fehost = process.env.REACT_APP_FRONTEND_HOST;
   const [data, setData] = useState({});
   const [redirect, setRedirect] = useState(null);
   const formElement = [
@@ -100,10 +102,30 @@ const AddCourse = () => {
       ) {
         return;
       }
-      await axios({
+      let result = await axios({
         method: "POST",
         url: behost + "course/add",
         data,
+        withCredentials: true,
+      });
+      // add course in abc database
+      const courseId = result.data.courseId;
+      const abcCourseData = {
+        instituteName: "Indian Institute of Information Technology Vadodara",
+        courseName: data.courseName,
+        coursePageLink: fehost + `course/${courseId}`,
+        maxCredit: data.credit
+      }
+      result = await axios({
+        method: "POST",
+        url: behost + "abc/create-course",
+        data: abcCourseData,
+        withCredentials: true,
+      });
+      await axios({
+        method: "PUT",
+        url: behost + `course/add-abc-course-id/${courseId}`,
+        data: {courseId: result.data.courseId},
         withCredentials: true,
       });
       setRedirect("/admin/dashboard");
@@ -113,7 +135,9 @@ const AddCourse = () => {
   };
 
   useEffect(() => {
-    if (!info.user || info.user.role !== "admin") {
+    if(info.isLoading){
+      return;
+    }else if (!info.user || info.user.role !== "admin") {
       if (!info.user) {
         setRedirect("/");
       } else if (info.user === "instructor") {
@@ -157,7 +181,7 @@ const AddCourse = () => {
   };
   return (
     <Container>
-      <div>
+      {info.isLoading?<Loading />:<div>
         <Segment>
           <h2>Add Course</h2>
           <Form>
@@ -172,7 +196,7 @@ const AddCourse = () => {
             </Button>
           </Form>
         </Segment>
-      </div>
+      </div>}
     </Container>
   );
 };

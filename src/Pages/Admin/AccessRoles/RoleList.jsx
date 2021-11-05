@@ -90,7 +90,7 @@ const RoleList = () => {
       </div>}
       <Message>
         <strong>
-          Add <Link to="/admin/addrole">New Roles</Link>
+          Add <Link to="/admin/add-role">New Roles</Link>
         </strong>
       </Message>
     </div>
