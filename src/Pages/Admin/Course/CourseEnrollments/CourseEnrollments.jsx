@@ -83,6 +83,7 @@ const CourseEnrollements = (props) => {
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
                         <Table.HeaderCell>Institute</Table.HeaderCell>
                         <Table.HeaderCell>Roll No.</Table.HeaderCell>
+                        <Table.HeaderCell>Profile</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
