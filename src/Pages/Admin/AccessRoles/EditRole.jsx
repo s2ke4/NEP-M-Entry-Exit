@@ -12,6 +12,7 @@ const EditRole = ()=>{
     const [redirect, setRedirect] = useState(null);
     const [loading, setLoading] = useState(true);
     const [loadingBtn, setLoadingBtn] = useState(false);
+    let [currentrole, setcurrentrole] = useState(1); 
 
 
     const fetchData = async () => {
@@ -19,7 +20,11 @@ const EditRole = ()=>{
         let res = await axios.get(`${behost}access/getroles/${id}`);
         if (res.data.length > 0) {
           setData(res.data[0]);
-          console.log(res.data[0]);
+          if(res.data[0].role === 'admin'){
+            setcurrentrole(0);
+            console.log(currentrole);
+          }
+          console.log(res.data[0].role);
           setLoading(false);
         } else {
           setRedirect("/404");
@@ -40,6 +45,7 @@ const EditRole = ()=>{
           }
       }
       fetchData();
+      console.log(currentrole);
     },[info])
 
     const handleEdit = async () => {
@@ -85,6 +91,7 @@ const EditRole = ()=>{
       { key: 2, text: 'Instructor', value: "instructor"}
     ]
 
+
     return(
         <div className = "ui container">
         <div className = "ui main">
@@ -106,6 +113,7 @@ const EditRole = ()=>{
                       button
                       name="role"
                       header= 'role'
+                      defaultValue={roles[currentrole].value}
                       options={roles}
                       onChange={setInfoDropdown}
                       required

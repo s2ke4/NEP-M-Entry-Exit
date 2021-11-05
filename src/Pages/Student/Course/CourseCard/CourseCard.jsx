@@ -25,8 +25,12 @@ const CourseCard = (props) => {
       </Card.Content>
       <Card.Content extra>
         <div className="student-course-card-footer">
-          <Icon name='users' />
-          { props.registeredStudent } / {props.totalSeat}
+          <Link to={{pathname: `/student/courses/${props.courseId}/enrollments`, obj: props.courseId}}>
+            <Icon name='users' />
+            { props.registeredStudent } / {props.totalSeat}
+          </Link>
+          {/* <Icon name='users' />
+          { props.registeredStudent } / {props.totalSeat} */}
           {
             (props.courseType === 0)?
               <Button

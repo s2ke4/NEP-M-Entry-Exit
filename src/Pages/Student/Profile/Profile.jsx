@@ -33,11 +33,6 @@ const UserProfile = ()=>{
         <Icon name='users' circular />
         <Header.Content>{profile.name}</Header.Content>
       </Header>
-      <div className="editbutton-profile-page">
-        <Button positive icon>
-          <Icon name='edit' />
-        </Button>
-      </div>
 
       <Divider horizontal>
         <Header as='h4'>

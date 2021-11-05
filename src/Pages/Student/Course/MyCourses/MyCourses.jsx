@@ -59,7 +59,7 @@ const MyCourses = () => {
                     {
                         courses.map((course,index) => (
                             <div key={index}>
-                                <CourseEnrollmentCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
+                                <CourseEnrollmentCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
                             </div>
                         ))
                     }

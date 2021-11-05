@@ -20,8 +20,6 @@ const AdminCourses = () => {
     "/assets/images/Courses/course4.jpg",
     "/assets/images/Courses/course5.jpg",
     "/assets/images/Courses/course6.jpg",
-    "/assets/images/Courses/course7.jpg",
-    "/assets/images/Courses/course8.jpg",
   ];
   useEffect(() => {
     if (!info.user || info.user.role !== "admin") {
@@ -40,10 +38,8 @@ const AdminCourses = () => {
   const fetchData = async () => {
     try {
       let res = await axios.get(`${behost}course/get`);
-      if (res.data.length > 0) {
         setCourses(res.data);
         setLoading(false);
-      }
     } catch (error) {
       console.log(error.message);
     }
@@ -65,7 +61,7 @@ const AdminCourses = () => {
                 courseName={course.courseName}
                 courseInstructor={course.instructor}
                 totalSeat={course.totalSeat}
-                courseImg={courseImg[index % 7]}
+                courseImg={courseImg[index % 6]}
                 courseId={course.id}
                 registeredStudent={course.registeredStudent}
                 requests={course.requests}
