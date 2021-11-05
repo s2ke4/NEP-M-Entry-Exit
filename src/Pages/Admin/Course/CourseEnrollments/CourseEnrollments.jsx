@@ -57,7 +57,7 @@ const CourseEnrollements = (props) => {
             <Table.Cell>{enrollment.name}</Table.Cell>
             <Table.Cell>{enrollment.email}</Table.Cell>
             <Table.Cell>{enrollment.institute}</Table.Cell>
-            <Table.Cell>{enrollment.phone}</Table.Cell>
+            <Table.Cell>{enrollment.id}</Table.Cell>
             <Table.Cell>
               <Button onClick={() => setRedirect(`/admin/student-profile/${enrollment.id}`)}>Profile</Button>
             </Table.Cell>
@@ -82,7 +82,7 @@ const CourseEnrollements = (props) => {
                         <Table.HeaderCell>Name</Table.HeaderCell>
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
                         <Table.HeaderCell>Institute</Table.HeaderCell>
-                        <Table.HeaderCell>Phone no.</Table.HeaderCell>
+                        <Table.HeaderCell>Roll No.</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
