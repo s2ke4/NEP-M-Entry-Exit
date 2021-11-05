@@ -17,8 +17,6 @@ const InstructorCourses = () => {
         "/assets/images/Courses/course4.jpg",
         "/assets/images/Courses/course5.jpg",
         "/assets/images/Courses/course6.jpg",
-        "/assets/images/Courses/course7.jpg",
-        "/assets/images/Courses/course8.jpg",
     ];
     useEffect(()=>{
           if (!info.user || info.user.role!=="instructor") {
@@ -58,7 +56,7 @@ const InstructorCourses = () => {
                     {
                         courses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 7]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
                             </div>
                         ))
                     }
