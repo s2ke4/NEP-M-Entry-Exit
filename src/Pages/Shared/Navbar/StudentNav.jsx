@@ -89,7 +89,7 @@ const NavBarDesktop = (props) => {
   };
   return (
     <>
-      <Menu inverted widths={9} style={navStyle}>
+      <Menu inverted widths={5} style={navStyle}>
         {items.map((item) => (
           <Menu.Item
             {...item}

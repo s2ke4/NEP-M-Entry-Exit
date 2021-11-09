@@ -66,17 +66,10 @@ const Header = () => {
   }
 
   return (
-    <div className="header">
+    <div className="header-of-nep">
       <div className="left-flex">
-        <div className="brand-logo">
-          <a href="/">
-            <img src={logo} alt={"logo"} className="brand-img" />
-          </a>
-        </div>
         <div className="brand">
           <div className="brand-name">NEP 2020 Multiple Entry Exit Management Portal</div>
-          <Divider fitted={true} className="brand-divider" />
-          <div className="brand-name">IIIT Vadodara</div>
         </div>
       </div>
 
