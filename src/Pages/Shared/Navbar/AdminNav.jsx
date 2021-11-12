@@ -98,7 +98,7 @@ const NavBarDesktop = (props) => {
   };
   return (
     <>
-      <Menu inverted widths={9} style={navStyle}>
+      <Menu inverted widths={4} style={navStyle}>
         {items.map((item) => (
               (item.content === "Roles") ?
               <Menu.Item active={activeItem === item.content}>
