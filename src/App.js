@@ -63,7 +63,6 @@ const App = ()=> {
                 <Route exact path="/admin/edit-course/:id" component={EditCourse} />
                 <Route exact path="/admin/course/:courseId/student-profile/:studentId" component={StudentApplication} />
                 <Route exact path="/admin/dashboard" component ={AdminDashboard} />
-                <Route exact path="/admin/dashboard" component ={AdminDashboard} />
                 <Route exact path="/admin/course/verify/:studentId" component ={StudentVerify} />
                 <Route exact path="/instructor/dashboard" component ={InstructorDashboard} />
                 <Route exact path="/instructor/courses/:id" component={InstructorCourseDetail} />

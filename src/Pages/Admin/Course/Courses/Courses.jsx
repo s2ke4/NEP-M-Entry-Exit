@@ -22,10 +22,13 @@ const AdminCourses = () => {
     "/assets/images/Courses/course6.jpg",
   ];
   useEffect(() => {
-    if (!info.user || info.user.role !== "admin") {
+    if(info.isLoading){
+      ;
+    }
+    else if (!info.user || info.user.role !== "admin") {
       if (!info.user) {
         setRedirect("/");
-      } else if (info.user === "instructor") {
+      } else if (info.user.role === "instructor") {
         setRedirect("/instructor/dashboard");
       } else {
         setRedirect("/student/dashboard");

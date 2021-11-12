@@ -20,16 +20,19 @@ const StudentCourses = () => {
         "/assets/images/Courses/course6.jpg",
     ];
     useEffect(()=>{
-        if(!info.user) {
+        if(info.isLoading){
+            ;
+        }else if(!info.user) {
             fetchData();
         }
         else if (info.user.role!=="student") {
-            if(info.user==="instructor"){
+            if(info.user.role==="instructor"){
                 setRedirect("/instructor/dashboard")
             } else {
                 setRedirect("/admin/dashboard")
             }
-        }else{
+        }
+        else{
             fetchData();
         }
     },[info])

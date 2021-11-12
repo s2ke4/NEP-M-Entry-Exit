@@ -47,14 +47,22 @@ const CourseEnrollements = (props) => {
   if (redirect) {
     return <Redirect to={redirect} />;
   }
+
+  const getFormattedDate = (date)=>{
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, '0');
+    let day = date.getDate().toString().padStart(2, '0');
+    return year + '-' + month + '-' + day;
+  }
+
   const showGradeForm = (enrollment)=>{
     setUserGrade({
       id: enrollment.id
     })
     setFormGrade({
       grade: enrollment.grade,
-      completion: new Date(enrollment.completion),
-      expiry: enrollment.expiry
+      completion: enrollment.grade?getFormattedDate(new Date(enrollment.completion)):null,
+      expiry: enrollment.grade?getFormattedDate(new Date(enrollment.expiry)):null
     })
     setOpen(true);
   }
@@ -74,6 +82,8 @@ const CourseEnrollements = (props) => {
           </Table.Cell>}
       </Table.Row>
   }
+
+
 
   const submitUserGrade = async(e)=>{
     await axios({ 
