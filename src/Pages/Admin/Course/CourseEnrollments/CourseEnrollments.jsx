@@ -12,6 +12,7 @@ const CourseEnrollements = (props) => {
     const courseId = useParams();
     const {info} = useContext(UserContext);
     const [enrollments, setEnrollments] = useState([]);
+    const [course,setCourse] = useState({});
     const [redirect, setRedirect] = useState(null);
     const behost = process.env.REACT_APP_BACKEND_HOST;
     const [loading, setLoading] = useState(true);
@@ -22,7 +23,9 @@ const CourseEnrollements = (props) => {
     try {
       const id = courseId.id;
       let res = await axios.get(`${behost}course/get/enrollments/${id}`);
-      setEnrollments(res.data);
+      console.log(res.data.course);
+      setEnrollments(res.data.enrollment);
+      setCourse(res.data.course);
       setLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -133,7 +136,7 @@ const CourseEnrollements = (props) => {
           </Modal>
           {loading? <Loading />:<div>
             <Header as='h2' className='course-enrollments-header-div' textAlign='center'>
-                <Header.Content className='course-enrollments-header'>CS303 : Software Engineering</Header.Content>
+                <Header.Content className='course-enrollments-header'>{course[0].courseName}</Header.Content>
             </Header>
 
             <Divider horizontal>

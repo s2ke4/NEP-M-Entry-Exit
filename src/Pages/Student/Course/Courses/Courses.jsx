@@ -43,7 +43,6 @@ const StudentCourses = () => {
             let res = await axios.get(`${behost}course/get`);
             if(res){
                 setCourses(res.data);
-                setLoading(false);
             }else{
                 setRedirect("/404")
             }
