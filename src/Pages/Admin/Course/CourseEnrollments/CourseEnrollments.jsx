@@ -116,7 +116,7 @@ const CourseEnrollements = (props) => {
         <div>
           <Modal size="small" as={Form} onSubmit={submitUserGrade} open={open} onClose={() => setOpen(false)}>
             <Modal.Header>
-              Edit User Grade
+              {formGrade.grade?"Edit":"Submit"} User Grade
             </Modal.Header>
             <Modal.Content>
               <label>Grade</label>
