@@ -31,7 +31,6 @@ const UserProfile = () => {
   const fetchData = async () => {
     try {
       let res = await axios.get(`${behost}student/profile/${studentId}`);
-      console.log(studentId);
       if (res.data) {
         setData(res.data[0]);
         setLoading(false);
@@ -48,12 +47,27 @@ const UserProfile = () => {
   const acceptUserEnrollment = async () => {
     try {
       setLoadBtn(true);
+      const data = await axios({
+        method: "GET",
+        url: behost + "course/getAbcId/" + courseId,
+        withCredentials: true,
+      })
+      const {abcCourseId} = data.data;
+      
+      await axios({
+        method: "POST",
+        url: behost + "abc/enrollment",
+        data: { courseId, studentId },
+        withCredentials: true,
+      });
+
       await axios({
         method: "POST",
         url: behost + "enrollment/accept",
         data: { courseId, studentId },
         withCredentials: true,
       });
+
       setRedirect(`/admin/course/request/${courseId}`);
     } catch (error) {
       console.log(error.message);
