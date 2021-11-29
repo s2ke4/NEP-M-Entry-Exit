@@ -81,7 +81,7 @@ const CourseEnrollements = (props) => {
             <Button onClick={() => setRedirect(`/admin/student-profile/${enrollment.id}`)}>Profile</Button>
           </Table.Cell>
           {info.user.role==="instructor" && <Table.Cell>
-            <Button onClick={()=>showGradeForm(enrollment)}>{enrollment.grade?"Edit Grade":"Submit Grade"}</Button>
+            <Button disabled={!course[0].isActive} onClick={()=>showGradeForm(enrollment)}>{enrollment.grade?"Edit Grade":"Submit Grade"}</Button>
           </Table.Cell>}
       </Table.Row>
   }
@@ -92,6 +92,12 @@ const CourseEnrollements = (props) => {
     await axios({ 
       method: "PUT",
       url: behost + "student/grade/" + courseId.id + "/" +userGrade.id ,
+      data:formGrade,
+      withCredentials: true
+    })
+    await axios({ 
+      method: "PUT",
+      url: behost + "abc/grade/" + courseId.id + "/" +userGrade.id ,
       data:formGrade,
       withCredentials: true
     })
@@ -138,7 +144,11 @@ const CourseEnrollements = (props) => {
             <Header as='h2' className='course-enrollments-header-div' textAlign='center'>
                 <Header.Content className='course-enrollments-header'>{course[0].courseName}</Header.Content>
             </Header>
-
+            {!course[0].isActive && <Header as='h5' textAlign='center'>
+                <Header.Content>
+                  This course is not active so you cannot able to submit/edit student grade.
+                </Header.Content>
+            </Header>}
             <Divider horizontal>
                 <Header as='h4'>
                     <Icon name='users' />

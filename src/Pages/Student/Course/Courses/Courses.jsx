@@ -19,6 +19,7 @@ const StudentCourses = () => {
         "/assets/images/Courses/course5.jpg",
         "/assets/images/Courses/course6.jpg",
     ];
+    
     useEffect(()=>{
         if(info.isLoading){
             ;
