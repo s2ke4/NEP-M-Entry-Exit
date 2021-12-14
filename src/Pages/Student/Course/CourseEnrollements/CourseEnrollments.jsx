@@ -18,13 +18,9 @@ const CourseEnrollements = (props) => {
   const fetchData = async () => {
     try {
       const id = courseId.id;
-      let res = await axios.get(`${behost}course/get/enrollments/${id}`);
-      if (res.data.length > 0) {
-        setEnrollments(res.data);
-        setLoading(false);
-      } else {
-        setRedirect("/404");
-      }
+      let res = await axios.get(`${behost}course/get/enrollments/${id}`);      
+      setEnrollments(res.data.enrollment);
+      setLoading(false);
     } catch (error) {
       console.log(error.message);
     }

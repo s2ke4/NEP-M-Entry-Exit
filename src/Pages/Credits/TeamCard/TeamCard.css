@@ -1,0 +1,33 @@
+.team-card-div {
+    padding: 1.4rem;
+    background-color: #d0e9cf;
+    margin: 2.5rem 1.5rem;
+    border-radius: 0.9rem;
+    width: 90%;
+}
+.team-card-img {
+    width: 10.5rem;
+    height: auto;
+    border-radius: 50%;
+}
+.team-card-name {
+    text-align: left;
+    margin-left: 0.5rem;
+    color: #3C3B3B;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+.team-card-role {
+    text-align: left;
+    margin-left: 0.5rem;
+    color: #858181;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+}
+.team-card-social-div {
+    display: flex;
+}
+.team-card-social-icon {
+    text-align: left;
+    margin: 0.8rem 0 0 0.5rem;
+}

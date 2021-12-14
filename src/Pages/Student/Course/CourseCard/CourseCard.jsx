@@ -7,9 +7,9 @@ import { UserContext } from '../../../../Providers/UserProvider';
 const CourseCard = (props) => {
   const history = useHistory();
   const {info} = useContext(UserContext);
+  const showEnrollments = props.showEnrollments || false;
   let reducedCourseName = (props.courseName.length > 27) ? props.courseName.substring(0,27) + "..." : props.courseName;
   let reducedInstructorName = (props.courseInstructor.length > 30) ? props.courseInstructor.substring(0,30) + "..." : props.courseInstructor;
-  console.log(typeof props.courseName);
   return (
     <Card>
       <Image src={props.courseImg} wrapped ui={false} />
@@ -25,10 +25,17 @@ const CourseCard = (props) => {
       </Card.Content>
       <Card.Content extra>
         <div className="student-course-card-footer">
-          <Link to={{pathname: `/student/courses/${props.courseId}/enrollments`, obj: props.courseId}}>
+          { showEnrollments ?
+            <Link to={{pathname: `/student/courses/${props.courseId}/enrollments`, obj: props.courseId}}>
             <Icon name='users' />
             { props.registeredStudent } / {props.totalSeat}
           </Link>
+          :
+          <span>
+            <Icon name='users' />
+            { props.registeredStudent } / {props.totalSeat}
+          </span>
+        }
           {/* <Icon name='users' />
           { props.registeredStudent } / {props.totalSeat} */}
           {

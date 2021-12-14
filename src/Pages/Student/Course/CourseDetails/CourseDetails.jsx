@@ -92,7 +92,12 @@ const StudentCourseDetail = () => {
         <p>Loading...</p>
       ) : (
         <div className="course-detail">
-          <Segment>{renderElement()}</Segment>
+          <Segment>
+            <h2 className="heading" style={{ marginBottom: '8.5vh' }}>
+                {data.courseName}
+            </h2>
+            {renderElement()}
+          </Segment>
           {info.user && shouldApply && (data['registeredStudent'] < data['totalSeat']) && data['isActive'] ? (
             <div>
               <div className="student-course-details-checkbox-div">

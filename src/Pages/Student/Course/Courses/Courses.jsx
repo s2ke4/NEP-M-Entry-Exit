@@ -82,7 +82,7 @@ const StudentCourses = () => {
                     {
                         courses.enrolledCourses.map((course,index) => (
                             <div key={index}>
-                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {2} isActive={course.isActive} />
+                                <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {2} isActive={course.isActive} showEnrollments={true} />
                             </div>
                         ))
                     }

@@ -67,6 +67,16 @@ const InstructorCourseDetail = () => {
         <Container>
             {loading?<p>Loading...</p>:<div className="course-detail">
                 <Segment>
+                <h2 className="heading">
+                {data.courseName}
+                <Button
+                    floated="right"
+                    icon="users"
+                    content="Enrolled Student"
+                    color="blue"
+                    onClick={() => setRedirect(`/instructor/courses/${id}/enrollments`)}
+                />
+                </h2>
                     {renderElement()}
                 </Segment>
             </div>}

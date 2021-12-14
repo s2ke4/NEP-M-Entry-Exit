@@ -1,0 +1,33 @@
+.about-us-team-div {
+    margin: 5rem 1.8rem;
+}
+.credits-header {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+.about-us-team-header {
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+.about-us-team-cards-div {
+    display: flex;
+    justify-content: center;
+}
+.about-us-dev-team-div {
+    margin: 4.5rem 0;
+}
+.about-us-mentor-div {
+    margin: 4.5rem 0;
+}
+
+@media only screen and (max-width: 770px) {
+    .about-us-team-cards-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

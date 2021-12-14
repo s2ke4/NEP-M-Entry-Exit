@@ -29,6 +29,7 @@ import MyCourses from './Pages/Student/Course/MyCourses/MyCourses';
 import StudentVerify from './Pages/Admin/PendingRequest/StudentVerify';
 import demoCourse from './Pages/Admin/PendingRequest/demoCourse.jsx'
 import CourseEnrollmentsStudent from './Pages/Student/Course/CourseEnrollements/CourseEnrollments'
+import Credits from './Pages/Credits/Credits';
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -79,7 +80,8 @@ const App = ()=> {
                 <Route exact path="/user/profile" component={UserProfile} />   
                 <Route exact path="/student/notifications" component={Notification} />  
                 <Route exact path="/student/courses/:id/enrollments" component={CourseEnrollmentsStudent} />
-                <Route exact path="/college/demo" component={demoCourse} />          
+                <Route exact path="/college/demo" component={demoCourse} />
+                <Route exact path="/credits" component={Credits} />      
               </Switch>
             </NavDecider>
           </MediaContextProvider>
