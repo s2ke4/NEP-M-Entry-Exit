@@ -3,6 +3,7 @@ import {UserContext} from '../../../Providers/UserProvider'
 import { Divider } from "semantic-ui-react";
 import "./Header.css";
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { useHistory } from "react-router"
@@ -69,7 +70,11 @@ const Header = () => {
     <div className="header-of-nep">
       <div className="left-flex">
         <div className="brand">
-          <div className="brand-name">NEP 2020 Multiple Entry Exit Management Portal</div>
+          <div className="brand-name">
+            <Link to="/" className="brand-name">
+              NEP 2020 Multiple Entry Exit Management Portal
+            </Link>
+          </div>
         </div>
       </div>
 

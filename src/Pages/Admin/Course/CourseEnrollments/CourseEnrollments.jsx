@@ -75,12 +75,12 @@ const CourseEnrollements = (props) => {
           <Table.Cell>{enrollment.email}</Table.Cell>
           <Table.Cell>{enrollment.institute}</Table.Cell>
           <Table.Cell>{enrollment.id}</Table.Cell>
-          {info.user.role==="instructor" && <Table.Cell>{enrollment.grade?enrollment.grade:"Not Graded"}</Table.Cell>}
+          {info.user.role==="instructor" && <Table.Cell>{enrollment.grade?enrollment.grade:"Not Credited"}</Table.Cell>}
           <Table.Cell>
             <Button onClick={() => setRedirect(`/admin/student-profile/${enrollment.id}`)}>Profile</Button>
           </Table.Cell>
           {info.user.role==="instructor" && <Table.Cell>
-            <Button disabled={!course[0].isActive} onClick={()=>showGradeForm(enrollment)}>{enrollment.grade?"Edit Grade":"Submit Grade"}</Button>
+            <Button disabled={!course[0].isActive} onClick={()=>showGradeForm(enrollment)}>{enrollment.grade?"Edit Credit":"Submit Credit"}</Button>
           </Table.Cell>}
       </Table.Row>
   }
@@ -125,15 +125,15 @@ const CourseEnrollements = (props) => {
         <div>
           <Modal size="small" as={Form} onSubmit={submitUserGrade} open={open} onClose={() => setOpen(false)}>
             <Modal.Header>
-              {formGrade.grade?"Edit":"Submit"} User Grade
+              {formGrade.grade?"Edit":"Submit"} User Credit
             </Modal.Header>
             <Modal.Content>
               <label>Grade</label>
-              <input type="number" onChange={handleGradeForm} placeholder="Add User Grade" name="grade" value={formGrade.grade} required/>
+              <input type="number" step=".01" onChange={handleGradeForm} placeholder="Add User Credit" name="grade" value={formGrade.grade} required/>
               <label>Course Completion Date</label>
               <input type="date" onChange={handleGradeForm} placeholder="Enter course completion date" name="completion" value={formGrade.completion} required/>
               <label>Credit Expiry Date</label>
-              <input type="date" onChange={handleGradeForm} placeholder="Enter Expiry Date of Grade" name="expiry" value={formGrade.expiry} required/>
+              <input type="date" onChange={handleGradeForm} placeholder="Enter Expiry Date of Credit" name="expiry" value={formGrade.expiry} required/>
             </Modal.Content>
             <Modal.Actions>
               <Button positive type="submit">Save</Button>
@@ -146,7 +146,7 @@ const CourseEnrollements = (props) => {
             </Header>
             {!course[0].isActive && <Header as='h5' textAlign='center'>
                 <Header.Content>
-                  This course is not active so you cannot able to submit/edit student grade.
+                  This course is not active so you cannot able to submit/edit student Credit.
                 </Header.Content>
             </Header>}
             <Divider horizontal>
@@ -162,7 +162,7 @@ const CourseEnrollements = (props) => {
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
                         <Table.HeaderCell>Institute</Table.HeaderCell>
                         <Table.HeaderCell>Roll No.</Table.HeaderCell>
-                        {info.user.role==="instructor" && <Table.HeaderCell>Grade</Table.HeaderCell>}
+                        {info.user.role==="instructor" && <Table.HeaderCell>Credit</Table.HeaderCell>}
                         <Table.HeaderCell>View Profile</Table.HeaderCell>
                         {info.user.role==="instructor" && <Table.HeaderCell>Submit/Edit</Table.HeaderCell>}
                     </Table.Row>

@@ -57,11 +57,16 @@ const AppliedCourses = () => {
                 loading?<p>loading...</p>:
                 <div className="courses-grid-div">
                     {
+                        courses.length !== 0 ?
                         courses.map((course,index) => (
                             <div key={index}>
                                 <AppliedCourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } />
                             </div>
                         ))
+                        :
+                        <div style={{ width: '100%' }}>
+                            <h3>All the applications which are pending to be reviewed by admin will appear here !</h3>
+                        </div>
                     }
                 </div>
             }
