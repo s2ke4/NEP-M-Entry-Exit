@@ -94,7 +94,7 @@ const EditRole = ()=>{
     return(
         <div className = "ui container">
         <div className = "ui main">
-            <h2> Add Role </h2>
+            <h2> Edit Role </h2>
             <form className = "ui form" >
                 <div className = "field">
                     <label> Name </label>
