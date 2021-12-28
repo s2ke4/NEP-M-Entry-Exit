@@ -6,7 +6,7 @@ import {UserContext} from '../../../Providers/UserProvider'
 const SignupPage = ()=>{
 
   const behost = process.env.REACT_APP_BACKEND_HOST;
-  const {info} = useContext(UserContext);
+  const {info,fetchInfo} = useContext(UserContext);
   const [studentData, setStudentData] = useState({});
   const [errorMsg,setErrorMsg] = useState();
   const [redirect, setRedirect] = useState(null);
@@ -28,9 +28,11 @@ const SignupPage = ()=>{
           setErrorMsg(result.data.msg);
           return;
         }
+        fetchInfo();
         setRedirect("/student/dashboard")
       } catch (error) {
         setWait(false);
+        setErrorMsg(error.message);
         console.log(error.message);
       }
   }
