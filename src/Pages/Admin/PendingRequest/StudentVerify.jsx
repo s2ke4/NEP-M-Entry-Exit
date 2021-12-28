@@ -23,7 +23,6 @@ import {
         try {
           let res = await axios.get(`${behost}student/verify/${studentId}`);
           if (res.data) {
-            console.log(res.data);
             setData(res.data);;  
             setLoading(false);
           } else {
@@ -56,10 +55,10 @@ import {
 
   const renderTableRow = (enrollment) => {
     return <Table.Row>
-        <Table.Cell><a href = "http://localhost:3000/college/demo" target = '_blank'>{enrollment.courseName}</a></Table.Cell>
+        <Table.Cell><a href = {enrollment.courseLink} target = '_blank'>{enrollment.courseName}</a></Table.Cell>
         {/* <Table.Cell><Link to = {enrollment.courseLink}>{enrollment.courseLink}</Link></Table.Cell> */}
         <Table.Cell>{enrollment.instituteName}</Table.Cell>
-        <Table.Cell>{enrollment.creditEarned}</Table.Cell>
+        <Table.Cell>{enrollment.creditEarned?enrollment.creditEarned:"Not Graded"}</Table.Cell>
         <Table.Cell>{enrollment.expiry}</Table.Cell>
         <Table.Cell>{enrollment.enrollmentDate}</Table.Cell>
         <Table.Cell>{enrollment.completionDate}</Table.Cell>
