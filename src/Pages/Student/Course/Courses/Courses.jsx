@@ -64,7 +64,7 @@ const StudentCourses = () => {
                 info.user?
                 <div className="courses-grid-div">
                     {
-                        courses.remainingCourses.map((course,index) => (
+                        courses && courses.remainingCourses && courses.remainingCourses.map((course,index) => (
                             <div key={index}>
                                 <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} isActive={course.isActive} />
                             </div>
@@ -72,7 +72,7 @@ const StudentCourses = () => {
                     }
                     {/* courseType: 1, The Courses in which student has applied */}
                     {
-                        courses.appliedCourses.map((course,index) => (
+                        courses && courses.appliedCourses && courses.appliedCourses.map((course,index) => (
                             <div key={index}>
                                 <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {1} isActive={course.isActive} />
                             </div>
@@ -80,7 +80,7 @@ const StudentCourses = () => {
                     }
                     {/* courseType: 3, The Courses in which student has been enrolled */}
                     {
-                        courses.enrolledCourses.map((course,index) => (
+                        courses && courses.enrolledCourses && courses.enrolledCourses.map((course,index) => (
                             <div key={index}>
                                 <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {2} isActive={course.isActive} showEnrollments={true} />
                             </div>
@@ -90,7 +90,7 @@ const StudentCourses = () => {
                 :
                 <div className="courses-grid-div">
                     {
-                        courses.map((course,index) => (
+                        courses && courses.map((course,index) => (
                             <div key={index}>
                                 <CourseCard courseName = {course.courseName} courseInstructor = {course.instructor}  totalSeat = {course.totalSeat} courseImg = {courseImg[index % 6]}  courseId = {course.id} registeredStudent = { course.registeredStudent } courseType = {0} isActive={course.isActive} />
                             </div>
