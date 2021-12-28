@@ -61,7 +61,6 @@ const EditRole = ()=>{
           withCredentials: true
         })
         setLoadingBtn(false);
-        console.log("hii");
         setRedirect("/admin/rolelist")
       } catch (error) {
         console.log(error.message);
@@ -95,17 +94,17 @@ const EditRole = ()=>{
     return(
         <div className = "ui container">
         <div className = "ui main">
-            <h2> Add Role </h2>
+            <h2> Edit Role </h2>
             <form className = "ui form" >
                 <div className = "field">
                     <label> Name </label>
-                    <input type = "text" name = "name" placeholder = "Name"  value={data.name} onChange={(e) => setInfo(e)}/>
+                    <input type = "text" name = "name" placeholder = "Name"  value={data.role} onChange={(e) => setInfo(e)}/>
                 </div>
                 <div className = "field">
                     <label> Email</label>
                     <input type = "text" name = "email" placeholder = "E-mail" value={data.email } onChange={(e) => setInfo(e)}/>
                 </div>
-                <div className = "field">
+                {data.role && <div className = "field">
                     <label>Role</label>
                     <Dropdown
                       placeholder='Select Role'
@@ -113,12 +112,12 @@ const EditRole = ()=>{
                       button
                       name="role"
                       header= 'role'
-                      defaultValue={roles[currentrole].value}
+                      defaultValue={data.role}
                       options={roles}
                       onChange={setInfoDropdown}
                       required
                     />
-                </div>
+                </div>}
                 <button className = "ui button blue" onClick={handleEdit}>{loadingBtn ? "Updating..." : "Update Access"}</button>
                 
             </form>
