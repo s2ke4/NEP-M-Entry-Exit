@@ -128,8 +128,8 @@ const CourseEnrollements = (props) => {
               {formGrade.grade?"Edit":"Submit"} User Credit
             </Modal.Header>
             <Modal.Content>
-              <label>Grade</label>
-              <input type="number" step=".01" onChange={handleGradeForm} placeholder="Add User Credit" name="grade" value={formGrade.grade} required/>
+              <label>Credit</label>
+              <input type="number" step="1" onChange={handleGradeForm} placeholder="Add User Credit" name="grade" value={formGrade.grade} required onkeydown={(e) => {if(e.key==='.'){e.preventDefault();}console.log(e)}} />
               <label>Course Completion Date</label>
               <input type="date" onChange={handleGradeForm} placeholder="Enter course completion date" name="completion" value={formGrade.completion} required/>
               <label>Credit Expiry Date</label>
