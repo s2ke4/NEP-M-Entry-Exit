@@ -23,7 +23,6 @@ const CourseEnrollements = (props) => {
     try {
       const id = courseId.id;
       let res = await axios.get(`${behost}course/get/enrollments/${id}`);
-      console.log(res.data.course);
       setEnrollments(res.data.enrollment);
       setCourse(res.data.course);
       setLoading(false);
@@ -95,9 +94,10 @@ const CourseEnrollements = (props) => {
       data:formGrade,
       withCredentials: true
     })
+    let tem = await axios.get(`${behost}course/getAbcId/${courseId.id}`);
     await axios({ 
       method: "PUT",
-      url: behost + "abc/grade/" + courseId.id + "/" +userGrade.id ,
+      url: behost + "abc/grade/" + tem.data.abcCourseId + "/" +userGrade.id ,
       data:formGrade,
       withCredentials: true
     })

@@ -53,11 +53,10 @@ const UserProfile = () => {
         withCredentials: true,
       })
       const {abcCourseId} = data.data;
-      
       await axios({
         method: "POST",
         url: behost + "abc/enrollment",
-        data: { courseId, studentId },
+        data: { courseId: abcCourseId, studentId },
         withCredentials: true,
       });
 
