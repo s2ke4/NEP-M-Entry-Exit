@@ -18,6 +18,7 @@ const CourseEnrollements = (props) => {
     const [loading, setLoading] = useState(true);
     const [userGrade,setUserGrade] = useState({});
     const [formGrade,setFormGrade] = useState({});
+    const [isTeaching,setIsTeaching] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -25,6 +26,7 @@ const CourseEnrollements = (props) => {
       let res = await axios.get(`${behost}course/get/enrollments/${id}`);
       setEnrollments(res.data.enrollment);
       setCourse(res.data.course);
+      setIsTeaching(res.data.isTeaching)
       setLoading(false);
     } catch (error) {
       console.log(error.message);
@@ -75,11 +77,11 @@ const CourseEnrollements = (props) => {
           <Table.Cell>{enrollment.email}</Table.Cell>
           <Table.Cell>{enrollment.institute}</Table.Cell>
           <Table.Cell>{enrollment.id}</Table.Cell>
-          {info.user.role==="instructor" && <Table.Cell>{enrollment.grade?enrollment.grade:"Not Credited"}</Table.Cell>}
+          {isTeaching && <Table.Cell>{enrollment.grade?enrollment.grade:"Not Credited"}</Table.Cell>}
           <Table.Cell>
             <Button onClick={() => setRedirect(`/admin/student-profile/${enrollment.id}`)}>Profile</Button>
           </Table.Cell>
-          {info.user.role==="instructor" && <Table.Cell>
+          {isTeaching && <Table.Cell>
             <Button disabled={!course[0].isActive} onClick={()=>showGradeForm(enrollment)}>{enrollment.grade?"Edit Credit":"Submit Credit"}</Button>
           </Table.Cell>}
       </Table.Row>
@@ -94,10 +96,9 @@ const CourseEnrollements = (props) => {
       data:formGrade,
       withCredentials: true
     })
-    let tem = await axios.get(`${behost}course/getAbcId/${courseId.id}`);
     await axios({ 
       method: "PUT",
-      url: behost + "abc/grade/" + tem.data.abcCourseId + "/" +userGrade.id ,
+      url: behost + "abc/grade/" + course[0].abcCourseId + "/" +userGrade.id ,
       data:formGrade,
       withCredentials: true
     })
@@ -162,9 +163,9 @@ const CourseEnrollements = (props) => {
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
                         <Table.HeaderCell>Institute</Table.HeaderCell>
                         <Table.HeaderCell>Roll No.</Table.HeaderCell>
-                        {info.user.role==="instructor" && <Table.HeaderCell>Credit</Table.HeaderCell>}
+                        {isTeaching && <Table.HeaderCell>Credit</Table.HeaderCell>}
                         <Table.HeaderCell>View Profile</Table.HeaderCell>
-                        {info.user.role==="instructor" && <Table.HeaderCell>Submit/Edit</Table.HeaderCell>}
+                        {isTeaching && <Table.HeaderCell>Submit/Edit</Table.HeaderCell>}
                     </Table.Row>
                 </Table.Header>
                 <Table.Body>
