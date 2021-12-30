@@ -4,6 +4,7 @@ import { Table, Button } from "semantic-ui-react";
 import axios from "axios";
 import { UserContext } from "../../../Providers/UserProvider";
 import './studentApplication.css'
+import LoadingData from "../../Shared/Loading/Loading";
 
 const RoleList = () => {
   const { info } = useContext(UserContext);
@@ -47,7 +48,7 @@ const RoleList = () => {
   return (
     <div className="ui container">
       {loading ? (
-        <p>Loading...</p>
+        <LoadingData />
       ) : (
         <div>
           <h3>Pending Request for {data.courseName} </h3>

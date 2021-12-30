@@ -4,6 +4,7 @@ import { Redirect,useParams } from 'react-router-dom'
 import {UserContext} from '../../../../Providers/UserProvider'
 import axios from 'axios';
 import '../CourseDetails/CourseDetails.css'
+import LoadingData from "../../../Shared/Loading/Loading";
 const InstructorCourseDetail = () => {
     const { id } = useParams();
     const [data,setData] = useState();
@@ -65,7 +66,7 @@ const InstructorCourseDetail = () => {
 
     return (
         <Container>
-            {loading?<p>Loading...</p>:<div className="course-detail">
+            {loading?<LoadingData />:<div className="course-detail">
                 <Segment>
                 <h2 className="heading">
                 {data.courseName}

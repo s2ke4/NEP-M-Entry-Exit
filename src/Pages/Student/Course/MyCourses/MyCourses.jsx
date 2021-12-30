@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 import { UserContext } from '../../../../Providers/UserProvider';
 import CourseEnrollmentCard from '../MyCoursesCard/MyCoursesCard';
+import LoadingData from '../../../Shared/Loading/Loading';
 
 const MyCourses = () => {
     const [courses,setCourses] = useState([{}]);
@@ -54,7 +55,7 @@ const MyCourses = () => {
     return (
         <div>
             {
-                loading?<p>loading...</p>:
+                loading?<p><LoadingData /></p>:
                 <div className="courses-grid-div">
                     {
                         courses.length !== 0 ?

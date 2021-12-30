@@ -3,6 +3,7 @@ import { useState, useEffect , React,useContext} from 'react';
 import { Redirect } from "react-router-dom";
 import axios from 'axios';
 import {UserContext} from '../../../Providers/UserProvider'
+import LoadingData from '../../Shared/Loading/Loading';
 const SignupPage = ()=>{
 
   const behost = process.env.REACT_APP_BACKEND_HOST;
@@ -67,7 +68,7 @@ const SignupPage = ()=>{
   return(
     <div>
       <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='top'>
-        {info.isLoading?<p>Loading...</p>:<Grid.Column style={{ maxWidth: 800 }}>
+        {info.isLoading?<LoadingData />:<Grid.Column style={{ maxWidth: 800 }}>
           <Header as='h2' color='teal' textAlign='center' >
             <Image src='/iiitv.jpg' />
           </Header>

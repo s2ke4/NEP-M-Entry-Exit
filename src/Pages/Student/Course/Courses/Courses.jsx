@@ -3,6 +3,7 @@ import { useState, useEffect,useContext } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router';
 import { UserContext } from '../../../../Providers/UserProvider';
+import LoadingData from '../../../Shared/Loading/Loading';
 
 const StudentCourses = () => {
     const [courses,setCourses] = useState({});
@@ -60,7 +61,7 @@ const StudentCourses = () => {
     return (
         <div>
             {
-                loading?<p>loading...</p>:
+                loading?<LoadingData />:
                 info.user?
                 <div className="courses-grid-div">
                     {

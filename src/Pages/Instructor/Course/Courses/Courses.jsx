@@ -3,6 +3,7 @@ import { useState, useEffect,useContext } from 'react';
 import {UserContext} from '../../../../Providers/UserProvider'
 import axios from 'axios';
 import { Redirect } from 'react-router';
+import LoadingData from '../../../Shared/Loading/Loading';
 
 const InstructorCourses = () => {
     const [courses,setCourses] = useState([{}]);
@@ -53,7 +54,7 @@ const InstructorCourses = () => {
     return (
         <div>
             {
-                loading?<p>loading...</p>:
+                loading?<LoadingData />:
                 <div className="courses-grid-div">
                     {
                         courses.map((course,index) => (

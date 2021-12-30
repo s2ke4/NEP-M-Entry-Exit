@@ -14,6 +14,7 @@ import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { UserContext } from "../../../Providers/UserProvider";
 import "./studentApplication.css";
+import LoadingData from "../../Shared/Loading/Loading";
 
 const UserProfile = () => {
   const { courseId, studentId } = useParams();
@@ -143,7 +144,7 @@ const UserProfile = () => {
       </Divider>
 
       {loading ? (
-        <p>Loading...</p>
+        <LoadingData />
       ) : (
         <div className="profile-information-table">
           <Table definition>
