@@ -34,7 +34,6 @@ const StudentCourseDetail = () => {
         withCredentials: true,
       });
       setRedirect("/student/applied-courses");
-      console.log(info.user.id + "hello");
     } catch (error) {
       console.log(error.message);
     }

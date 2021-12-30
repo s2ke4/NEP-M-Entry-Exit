@@ -23,7 +23,6 @@ import {
         try {
           let res = await axios.get(`${behost}student/verify/${studentId}`);
           if (res.data) {
-            console.log(res.data);
             setData(res.data);;  
             setLoading(false);
           } else {
