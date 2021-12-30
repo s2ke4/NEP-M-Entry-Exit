@@ -75,9 +75,6 @@ const UserProfile = () => {
   };
 
   const verifystudentdata = async() => {
-    //console.log(studentId);
-    
-    // setRedirect(`/admin/course/verify/${studentId}`);
     window.open(`/admin/course/verify/${studentId}`, '_blank');
   }
 

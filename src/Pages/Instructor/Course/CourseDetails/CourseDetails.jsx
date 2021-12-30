@@ -47,16 +47,18 @@ const InstructorCourseDetail = () => {
     }
 
     useEffect(()=>{
-          if (!info.user || info.user.role!=="instructor") {
-             if(!info.user){
-               setRedirect("/");
-             }else if(info.user==="admin"){
-               setRedirect("/admin/dashboard")
+          if(!info.isLoading){
+            if (!info.user || info.user.role!=="instructor") {
+                if(!info.user){
+                  setRedirect("/");
+                }else if(info.user==="admin"){
+                  setRedirect("/admin/dashboard")
+                }else{
+                  setRedirect("/student/dashboard")
+                }
              }else{
-               setRedirect("/student/dashboard")
+                 fetchData();
              }
-          }else{
-              fetchData();
           }
       },[info])
     

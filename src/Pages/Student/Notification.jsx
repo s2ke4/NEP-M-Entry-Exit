@@ -13,7 +13,6 @@ const Notification = () => {
     const fetchData = async () => {
       try {
         let res = await axios.get(`${behost}student/notifications`);
-        console.log(res.data);
         setNotification(res.data);
         setLoading(false);
       } catch (error) {

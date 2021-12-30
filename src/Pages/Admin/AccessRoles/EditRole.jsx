@@ -22,9 +22,7 @@ const EditRole = ()=>{
           setData(res.data[0]);
           if(res.data[0].role === 'admin'){
             setcurrentrole(0);
-            console.log(currentrole);
           }
-          console.log(res.data[0].role);
           setLoading(false);
         } else {
           setRedirect("/404");
@@ -45,7 +43,6 @@ const EditRole = ()=>{
           }
       }
       fetchData();
-      console.log(currentrole);
     },[info])
 
     const handleEdit = async () => {

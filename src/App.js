@@ -26,6 +26,7 @@ import UserProvider from './Providers/UserProvider'
 import AppliedCourses from './Pages/Student/Course/AppliedCourses/AppliedCourses';
 import Notification from './Pages/Student/Notification';
 import MyCourses from './Pages/Student/Course/MyCourses/MyCourses';
+import Course from './Pages/Course/Course';
 import StudentVerify from './Pages/Admin/PendingRequest/StudentVerify';
 import demoCourse from './Pages/Admin/PendingRequest/demoCourse.jsx'
 import CourseEnrollmentsStudent from './Pages/Student/Course/CourseEnrollements/CourseEnrollments'
@@ -58,6 +59,7 @@ const App = ()=> {
             <NavDecider>
               <Switch>
                 <Route exact path="/" component={StudentDashboard} />
+                <Route exact path="/course/:courseId" component = {Course} />
                 <Route exact path="/admin/add-course" component={AddCourse} />
                 <Route exact path="/admin/courses/:id" component={AdminCourseDetail} />
                 <Route exact path="/admin/course/request/:id" component={PendingStudentList} />
