@@ -30,6 +30,7 @@ import StudentVerify from './Pages/Admin/PendingRequest/StudentVerify';
 import demoCourse from './Pages/Admin/PendingRequest/demoCourse.jsx'
 import CourseEnrollmentsStudent from './Pages/Student/Course/CourseEnrollements/CourseEnrollments'
 import Credits from './Pages/Credits/Credits';
+import Footer from './Pages/Shared/Footer/Footer';
 
 const AppMedia = createMedia({
   breakpoints: {
@@ -85,6 +86,7 @@ const App = ()=> {
               </Switch>
             </NavDecider>
           </MediaContextProvider>
+          <Footer />
         </Router>
         </UserProvider>
     </div>
