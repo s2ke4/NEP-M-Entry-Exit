@@ -17,7 +17,7 @@ const Footer = () => {
             </div> */}
             <Divider />
             <div className="brand-name-div">
-                <Link className="brand-name-p">NEP Institute Management Portal</Link>
+                <Link className="brand-name-p" to="/">NEP Institute Management Portal</Link>
             </div>
             <div className='footer-credits-div'>
                 <Link to="/credits" className='footer-credits-link'>Credits</Link>
